@@ -52,6 +52,51 @@ export const nav = [
   { label: "Contact", href: "/contact" },
 ] as const;
 
+/* ─────────────────────────────── Photography ─────────────────────────────── */
+
+/**
+ * Every photograph on the site, in one place.
+ *
+ * Drop a file into `public/photos/` and put its path here — that is the whole
+ * job. `null` leaves a warm abstract placeholder in that slot, so the site
+ * always looks finished no matter how many you have filled.
+ *
+ * The shape matters: each slot is cropped with object-cover, so supplying the
+ * listed orientation avoids losing anything important. Run
+ * `npm run photos` to resize and compress whatever you drop into `photos-inbox/`.
+ */
+export const photos: {
+  heroProperty: string | null;
+  whoItsFor: string | null;
+  aboutStory: string | null;
+  midTermStay: string | null;
+  module: Record<string, string | null>;
+} = {
+  /** 4:5 portrait — the single most important image on the site. */
+  heroProperty: "/photos/property-verandah.jpg",
+  /** 4:5 portrait — an owner-run property, people in it if possible. */
+  whoItsFor: "/photos/homestay-living-room.jpg",
+  /** 4:5 portrait — ideally the two of you; a sense of place works too. */
+  aboutStory: "/photos/old-goa-basilica.jpg",
+  /** 4:5 portrait — somewhere you would happily stay for months. */
+  midTermStay: "/photos/fontainhas-panjim.jpg",
+
+  /* Unused for now — a night-fair street scene with no natural home on the
+     site. Kept here so it is easy to drop into a slot if you want it:
+     /photos/night-fair.jpg */
+
+  /** 4:3 landscape each, keyed by module slug. */
+  module: {
+    website: null,
+    social: null,
+    enquiries: null,
+    whatsapp: null,
+    ota: null,
+    bookings: null,
+    loyalty: null,
+  },
+};
+
 /* ───────────────────────────── The seven modules ─────────────────────────── */
 
 export type Module = {

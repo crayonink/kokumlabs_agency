@@ -4,6 +4,7 @@ import {
   howItWorks,
   midTerm,
   modules,
+  photos,
   segments,
   whatsappUrl,
 } from "@/lib/site";
@@ -109,12 +110,12 @@ export default function Home() {
             <div className="lg:col-span-5">
               <Reveal delay={200}>
                 <PhotoSlot
-                  alt="A sunlit verandah at an independent coastal property"
+                  src={photos.heroProperty}
+                  alt="A guest room opening onto a tiled verandah, looking out over a misty valley"
                   aspect="aspect-[4/5]"
                   tone="dawn"
                   priority
                   rounded="rounded-3xl"
-                  caption="Replace with your best property photograph."
                 />
               </Reveal>
             </div>
@@ -321,8 +322,9 @@ export default function Home() {
                 sub="Chains have revenue managers, marketing teams and engineers. You have a property to run. We are the version of that team that fits an independent operator."
               />
               <PhotoSlot
-                alt="An owner-run homestay courtyard in the late afternoon"
-                aspect="aspect-[3/2]"
+                src={photos.whoItsFor}
+                alt="The living room of an owner-run homestay, with cane furniture and a marble floor"
+                aspect="aspect-[4/5]"
                 tone="palm"
                 className="mt-10"
               />

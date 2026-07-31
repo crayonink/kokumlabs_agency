@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { modules } from "@/lib/site";
+import { modules, photos } from "@/lib/site";
 import CTASection from "@/components/CTASection";
 import PageHero from "@/components/PageHero";
 import PhotoSlot from "@/components/PhotoSlot";
@@ -92,6 +92,7 @@ export default function PlatformPage() {
                 >
                   <Reveal delay={120}>
                     <PhotoSlot
+                      src={photos.module[m.slug]}
                       alt={`${m.name} — ${m.short}`}
                       aspect="aspect-[4/3]"
                       tone={tones[i % tones.length]}

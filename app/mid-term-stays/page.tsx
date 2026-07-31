@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { midTerm, whatsappUrl } from "@/lib/site";
+import { midTerm, photos, whatsappUrl } from "@/lib/site";
 import CTASection from "@/components/CTASection";
 import PageHero from "@/components/PageHero";
 import PhotoSlot from "@/components/PhotoSlot";
@@ -132,8 +132,9 @@ export default function MidTermStaysPage() {
                 sub="This is not a listing you post and hope. It is active sourcing, done by us, with a qualification step before anything reaches your inbox."
               />
               <PhotoSlot
-                alt="A long-stay guest working from a quiet property terrace"
-                aspect="aspect-[3/2]"
+                src={photos.midTermStay}
+                alt="A quiet lane of colourful Portuguese-era houses in Fontainhas, Panjim"
+                aspect="aspect-[4/5]"
                 tone="dusk"
                 className="mt-10"
               />

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { founders } from "@/lib/site";
+import { founders, photos } from "@/lib/site";
 import CTASection from "@/components/CTASection";
 import PageHero from "@/components/PageHero";
 import PhotoSlot from "@/components/PhotoSlot";
@@ -97,11 +97,11 @@ export default function AboutPage() {
           <div className="lg:col-span-5">
             <Reveal delay={140}>
               <PhotoSlot
-                alt="The Kokum Labs founders at work"
+                src={photos.aboutStory}
+                alt="The Basilica of Bom Jesus in Old Goa, on the Konkan coast"
                 aspect="aspect-[4/5]"
                 tone="clay"
                 rounded="rounded-3xl"
-                caption="Replace with a photograph of the two of you."
               />
             </Reveal>
           </div>
