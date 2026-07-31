@@ -96,6 +96,6 @@ After the domain is live, set `site.url` in `lib/site.ts` so the sitemap and soc
 
 ## Notes
 
-- `next.config.ts` pins `turbopack.root` to this folder. There is an unrelated `package-lock.json` in `C:\Users\RUPA\` that Next.js otherwise mistakes for the workspace root.
+- `next.config.ts` pins `turbopack.root` to this folder, so an unrelated lockfile elsewhere on the machine can't be mistaken for the workspace root.
 - Accessibility: skip link, visible focus rings, `prefers-reduced-motion` honoured, semantic landmarks throughout.
 - There is no analytics on the site yet. Vercel Analytics is one line in `layout.tsx` when you want it.
