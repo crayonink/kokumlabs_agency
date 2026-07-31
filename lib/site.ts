@@ -218,7 +218,7 @@ export const founders = [
     bio: "Spent years at Amazon building systems where a slow page or a failed request costs real money at real scale. Brings that same standard to a 12-room homestay: your guest should never wait, and nothing should ever quietly break.",
     /** TODO: optional */
     linkedin: "",
-    photo: null as string | null,
+    photo: "/photos/apratim-gupta.jpg" as string | null,
   },
   {
     name: "Rupanjana Mitra",
