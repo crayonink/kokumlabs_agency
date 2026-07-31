@@ -1,181 +1,302 @@
 /**
- * Illustrations for the seven platform modules.
+ * Illustrations for the seven platform modules — maximalist.
  *
- * These sit in the Platform page's photo slots. They are drawn rather than
- * photographed on purpose: the modules describe software behaviour — channel
- * sync, automated replies, repeat-guest campaigns — and a stock photograph of
- * a laptop would say nothing about any of it.
+ * Drawn, not photographed: the modules describe software behaviour, and a stock
+ * photograph of a laptop would say nothing about any of it.
  *
- * All seven share one visual language: a floating paper panel on the warm
- * gradient, ink for structure, kokum for whatever the module actually does.
+ * The language is dense and ornamental, borrowing from the azulejo tilework and
+ * jaali screens of the Konkan coast — the same world the Fontainhas photograph
+ * on the mid-term page comes from. Every panel is a tiled ground, a patterned
+ * border, corner rosettes and botanical flourishes, with the module's actual
+ * function carried in kokum at the centre.
+ *
+ * Palette: kokum, cobalt, ochre, terracotta, palm.
+ *
+ * SVG ids are global to the document and all seven render on one page, so every
+ * pattern and gradient id is prefixed per module.
  */
 
-const VIEW = "0 0 800 600";
+/* ───────────────────────────── Shared ornament ───────────────────────────── */
 
-function Frame({ children }: { children: React.ReactNode }) {
+function Defs({ p }: { p: string }) {
   return (
-    <svg
-      viewBox={VIEW}
-      fill="none"
-      className="h-full w-full"
-      preserveAspectRatio="xMidYMid meet"
-      aria-hidden="true"
-    >
-      <defs>
-        <filter id="mg-shadow" x="-20%" y="-20%" width="140%" height="140%">
-          <feDropShadow
-            dx="0"
-            dy="10"
-            stdDeviation="14"
-            floodColor="#1a1512"
-            floodOpacity="0.16"
-          />
-        </filter>
-        <filter id="mg-shadow-sm" x="-30%" y="-30%" width="160%" height="160%">
-          <feDropShadow
-            dx="0"
-            dy="6"
-            stdDeviation="8"
-            floodColor="#1a1512"
-            floodOpacity="0.14"
-          />
-        </filter>
-      </defs>
-      {children}
-    </svg>
+    <defs>
+      {/* azulejo-ish four-petal tile */}
+      <pattern
+        id={`${p}-tile`}
+        width="48"
+        height="48"
+        patternUnits="userSpaceOnUse"
+      >
+        <path
+          d="M24 6c5 9 9 13 18 18-9 5-13 9-18 18-5-9-9-13-18-18 9-5 13-9 18-18z"
+          className="fill-cobalt"
+          fillOpacity="0.16"
+        />
+        <circle cx="0" cy="0" r="3" className="fill-kokum" fillOpacity="0.18" />
+        <circle cx="48" cy="0" r="3" className="fill-kokum" fillOpacity="0.18" />
+        <circle cx="0" cy="48" r="3" className="fill-kokum" fillOpacity="0.18" />
+        <circle cx="48" cy="48" r="3" className="fill-kokum" fillOpacity="0.18" />
+      </pattern>
+
+      {/* fine jaali lattice */}
+      <pattern
+        id={`${p}-jaali`}
+        width="26"
+        height="26"
+        patternUnits="userSpaceOnUse"
+      >
+        <path
+          d="M13 0v26M0 13h26"
+          className="stroke-ink"
+          strokeOpacity="0.1"
+          strokeWidth="1.5"
+        />
+        <circle cx="13" cy="13" r="4" className="fill-ochre" fillOpacity="0.3" />
+      </pattern>
+
+      {/* dense chevron band for borders */}
+      <pattern
+        id={`${p}-chev`}
+        width="22"
+        height="22"
+        patternUnits="userSpaceOnUse"
+      >
+        <path
+          d="M0 16l11-10 11 10"
+          className="stroke-terracotta"
+          strokeOpacity="0.55"
+          strokeWidth="3"
+          fill="none"
+        />
+      </pattern>
+
+      {/* stripe band */}
+      <pattern
+        id={`${p}-stripe`}
+        width="14"
+        height="14"
+        patternUnits="userSpaceOnUse"
+        patternTransform="rotate(45)"
+      >
+        <rect width="7" height="14" className="fill-ochre" fillOpacity="0.4" />
+      </pattern>
+    </defs>
   );
 }
 
-/** A horizontal ink rule standing in for a line of text. */
-function TextLine({
+/** Eight-point rosette, the recurring corner motif. */
+function Rosette({
   x,
   y,
-  w,
-  h = 12,
-  o = 0.16,
+  r = 26,
+  className = "fill-kokum",
+  o = 0.8,
 }: {
   x: number;
   y: number;
-  w: number;
-  h?: number;
+  r?: number;
+  className?: string;
   o?: number;
 }) {
+  const petals = Array.from({ length: 8 }, (_, i) => (i * 360) / 8);
   return (
-    <rect
-      x={x}
-      y={y}
-      width={w}
-      height={h}
-      rx={h / 2}
-      className="fill-ink"
-      fillOpacity={o}
-    />
+    <g transform={`translate(${x} ${y})`} fillOpacity={o}>
+      {petals.map((a) => (
+        <ellipse
+          key={a}
+          rx={r * 0.32}
+          ry={r}
+          className={className}
+          transform={`rotate(${a})`}
+        />
+      ))}
+      <circle r={r * 0.3} className="fill-paper" />
+      <circle r={r * 0.16} className={className} />
+    </g>
+  );
+}
+
+/** Palm frond flourish. */
+function Frond({
+  x,
+  y,
+  rotate = 0,
+  scale = 1,
+}: {
+  x: number;
+  y: number;
+  rotate?: number;
+  scale?: number;
+}) {
+  const leaves = [-52, -34, -16, 16, 34, 52];
+  return (
+    <g transform={`translate(${x} ${y}) rotate(${rotate}) scale(${scale})`}>
+      <path
+        d="M0 0C10 -26 14 -54 12 -84"
+        className="stroke-palm"
+        strokeOpacity="0.75"
+        strokeWidth="4"
+        strokeLinecap="round"
+        fill="none"
+      />
+      {leaves.map((a, i) => (
+        <ellipse
+          key={a}
+          cx="0"
+          cy={-22 - i * 11}
+          rx="24"
+          ry="7"
+          className="fill-palm"
+          fillOpacity="0.42"
+          transform={`rotate(${a} 0 ${-22 - i * 11})`}
+        />
+      ))}
+    </g>
+  );
+}
+
+/** Patterned ground, border bands, corner rosettes — every panel gets these. */
+function Frame({ p, children }: { p: string; children: React.ReactNode }) {
+  return (
+    <div className="relative aspect-[4/3] w-full overflow-hidden rounded-3xl ring-1 ring-line/70">
+      <svg
+        viewBox="0 0 800 600"
+        className="absolute inset-0 h-full w-full"
+        preserveAspectRatio="xMidYMid slice"
+        aria-hidden="true"
+      >
+        <Defs p={p} />
+
+        {/* ground */}
+        <rect width="800" height="600" className="fill-paper-2" />
+        <rect width="800" height="600" fill={`url(#${p}-tile)`} />
+
+        {/* outer chevron band */}
+        <rect x="0" y="0" width="800" height="26" fill={`url(#${p}-chev)`} />
+        <rect x="0" y="574" width="800" height="26" fill={`url(#${p}-chev)`} />
+        <rect x="0" y="0" width="26" height="600" fill={`url(#${p}-stripe)`} />
+        <rect x="774" y="0" width="26" height="600" fill={`url(#${p}-stripe)`} />
+
+        {/* inner keyline */}
+        <rect
+          x="38"
+          y="38"
+          width="724"
+          height="524"
+          rx="18"
+          className="stroke-kokum"
+          strokeOpacity="0.5"
+          strokeWidth="3"
+          fill="none"
+        />
+        <rect
+          x="48"
+          y="48"
+          width="704"
+          height="504"
+          rx="12"
+          className="stroke-ink"
+          strokeOpacity="0.16"
+          strokeWidth="1.5"
+          strokeDasharray="6 7"
+          fill="none"
+        />
+
+        {/* corner rosettes */}
+        <Rosette x={70} y={70} r={20} />
+        <Rosette x={730} y={70} r={20} className="fill-cobalt" o={0.75} />
+        <Rosette x={70} y={530} r={20} className="fill-cobalt" o={0.75} />
+        <Rosette x={730} y={530} r={20} />
+
+        {children}
+      </svg>
+    </div>
   );
 }
 
 /* ─────────────────────────────── Website ─────────────────────────────────── */
 
 function Website() {
+  const p = "web";
   return (
-    <Frame>
-      <g filter="url(#mg-shadow)">
-        <rect
-          x="110"
-          y="95"
-          width="580"
-          height="410"
-          rx="20"
-          className="fill-paper"
-        />
-      </g>
-      {/* browser chrome */}
+    <Frame p={p}>
+      <Frond x={118} y={470} rotate={-18} scale={0.9} />
+      <Frond x={686} y={470} rotate={18} scale={0.9} />
+
       <rect
-        x="110"
-        y="95"
-        width="580"
-        height="54"
+        x="180"
+        y="112"
+        width="440"
+        height="380"
         rx="20"
-        className="fill-paper-2"
+        className="fill-paper stroke-ink"
+        strokeOpacity="0.3"
+        strokeWidth="3"
       />
-      <rect x="110" y="129" width="580" height="20" className="fill-paper-2" />
-      <circle cx="142" cy="122" r="7" className="fill-ink" fillOpacity="0.15" />
-      <circle cx="166" cy="122" r="7" className="fill-ink" fillOpacity="0.15" />
-      <circle cx="190" cy="122" r="7" className="fill-ink" fillOpacity="0.15" />
       <rect
-        x="222"
-        y="110"
+        x="180"
+        y="112"
+        width="440"
+        height="52"
+        rx="20"
+        className="fill-cobalt"
+        fillOpacity="0.85"
+      />
+      <rect x="180" y="144" width="440" height="20" className="fill-cobalt" fillOpacity="0.85" />
+      {[212, 236, 260].map((cx) => (
+        <circle key={cx} cx={cx} cy="138" r="7" className="fill-paper" fillOpacity="0.8" />
+      ))}
+      <rect
+        x="292"
+        y="128"
         width="300"
-        height="24"
+        height="20"
+        rx="10"
+        className="fill-paper"
+        fillOpacity="0.3"
+      />
+
+      {/* patterned hero block */}
+      <rect x="212" y="192" width="376" height="150" rx="12" fill={`url(#${p}-jaali)`} />
+      <rect
+        x="212"
+        y="192"
+        width="376"
+        height="150"
         rx="12"
-        className="fill-ink"
-        fillOpacity="0.07"
+        className="stroke-terracotta"
+        strokeOpacity="0.6"
+        strokeWidth="3"
+        fill="none"
       />
-      {/* hero image block */}
-      <rect
-        x="142"
-        y="180"
-        width="330"
-        height="180"
-        rx="14"
-        className="fill-palm"
-        fillOpacity="0.28"
-      />
-      <circle cx="200" cy="228" r="18" className="fill-paper" fillOpacity="0.6" />
-      <path
-        d="M142 330l70-58 58 46 52-38 90 70v10H142z"
-        className="fill-palm"
-        fillOpacity="0.45"
-      />
-      <TextLine x={142} y={384} w={250} />
-      <TextLine x={142} y={410} w={180} o={0.1} />
-      {/* booking card */}
-      <g filter="url(#mg-shadow-sm)">
+      <Rosette x={400} y={267} r={38} className="fill-terracotta" o={0.85} />
+
+      {[366, 396].map((y, i) => (
         <rect
-          x="500"
-          y="180"
-          width="160"
-          height="240"
-          rx="14"
-          className="fill-paper"
+          key={y}
+          x="212"
+          y={y}
+          width={i === 0 ? 300 : 220}
+          height="12"
+          rx="6"
+          className="fill-ink"
+          fillOpacity={0.18 - i * 0.05}
         />
-      </g>
-      <TextLine x={522} y={204} w={80} h={10} />
+      ))}
+
+      <rect x="212" y="430" width="220" height="46" rx="23" className="fill-kokum" />
       <rect
-        x="522"
-        y="230"
-        width="116"
-        height="34"
-        rx="8"
-        className="fill-ink"
-        fillOpacity="0.06"
-      />
-      <rect
-        x="522"
-        y="276"
-        width="116"
-        height="34"
-        rx="8"
-        className="fill-ink"
-        fillOpacity="0.06"
-      />
-      <rect
-        x="522"
-        y="330"
-        width="116"
-        height="40"
-        rx="20"
-        className="fill-kokum"
-      />
-      <rect
-        x="552"
-        y="346"
-        width="56"
-        height="8"
-        rx="4"
+        x="248"
+        y="447"
+        width="148"
+        height="12"
+        rx="6"
         className="fill-paper"
         fillOpacity="0.9"
       />
-      <TextLine x={540} y={390} w={80} h={8} o={0.12} />
+      <Rosette x={520} y={453} r={22} className="fill-ochre" o={0.9} />
+      <Rosette x={572} y={453} r={16} className="fill-palm" o={0.7} />
     </Frame>
   );
 }
@@ -183,97 +304,66 @@ function Website() {
 /* ──────────────────────────────── Social ─────────────────────────────────── */
 
 function Social() {
+  const p = "soc";
+  const cards = [
+    { x: 300, y: 96, w: 300, h: 180, rot: 9, fill: "fill-ochre", o: 0.35 },
+    { x: 250, y: 130, w: 300, h: 210, rot: 5, fill: "fill-terracotta", o: 0.4 },
+    { x: 200, y: 170, w: 300, h: 240, rot: 2, fill: "fill-cobalt", o: 0.35 },
+  ];
   return (
-    <Frame>
-      {/* back cards, fanned */}
-      <g filter="url(#mg-shadow-sm)" transform="rotate(-8 300 300)">
-        <rect
-          x="150"
-          y="150"
-          width="250"
-          height="310"
-          rx="18"
-          className="fill-paper"
-          fillOpacity="0.55"
-        />
-      </g>
-      <g filter="url(#mg-shadow-sm)" transform="rotate(-4 330 300)">
-        <rect
-          x="200"
-          y="140"
-          width="250"
-          height="310"
-          rx="18"
-          className="fill-paper"
-          fillOpacity="0.8"
-        />
-      </g>
-      {/* front card */}
-      <g filter="url(#mg-shadow)">
-        <rect
-          x="260"
-          y="128"
-          width="290"
-          height="345"
-          rx="18"
-          className="fill-paper"
-        />
-      </g>
-      <circle cx="292" cy="162" r="14" className="fill-kokum" fillOpacity="0.8" />
-      <TextLine x={316} y={155} w={90} h={9} />
-      <TextLine x={316} y={170} w={54} h={7} o={0.1} />
+    <Frame p={p}>
+      <Frond x={112} y={520} rotate={-26} scale={0.8} />
+      <Frond x={700} y={190} rotate={150} scale={0.7} />
+
+      {cards.map((c) => (
+        <g key={c.x} transform={`rotate(${c.rot} ${c.x + c.w / 2} ${c.y + c.h / 2})`}>
+          <rect
+            x={c.x}
+            y={c.y}
+            width={c.w}
+            height={c.h}
+            rx="16"
+            className={`${c.fill} stroke-ink`}
+            fillOpacity={c.o}
+            strokeOpacity="0.22"
+            strokeWidth="3"
+          />
+          <rect
+            x={c.x + 14}
+            y={c.y + 14}
+            width={c.w - 28}
+            height={c.h - 28}
+            rx="10"
+            fill={`url(#${p}-jaali)`}
+          />
+        </g>
+      ))}
+
+      {/* the post going out next */}
       <rect
-        x="282"
-        y="192"
-        width="246"
-        height="164"
-        rx="12"
-        className="fill-palm"
-        fillOpacity="0.3"
+        x="170"
+        y="250"
+        width="330"
+        height="270"
+        rx="18"
+        className="fill-paper stroke-kokum"
+        strokeWidth="4"
       />
+      <rect x="192" y="272" width="286" height="120" rx="10" fill={`url(#${p}-stripe)`} />
+      <Rosette x={335} y={332} r={34} className="fill-kokum" o={0.9} />
+      <circle cx="216" cy="426" r="18" className="fill-cobalt" fillOpacity="0.8" />
+      {[252, 288].map((x) => (
+        <circle key={x} cx={x} cy="426" r="14" className="fill-ochre" fillOpacity="0.85" />
+      ))}
       <path
-        d="M282 330l52-44 44 34 40-30 110 62v4H282z"
-        className="fill-palm"
-        fillOpacity="0.45"
-      />
-      <circle cx="330" cy="232" r="15" className="fill-paper" fillOpacity="0.65" />
-      {/* heart + comment */}
-      <path
-        d="M292 384c0-9 7-15 15-15 5 0 9 2 11 6 2-4 6-6 11-6 8 0 15 6 15 15 0 12-16 21-26 28-10-7-26-16-26-28z"
+        d="M330 414c0-11 9-19 19-19 7 0 13 3 15 8 2-5 8-8 15-8 10 0 19 8 19 19 0 16-22 28-34 37-12-9-34-21-34-37z"
         className="fill-kokum"
       />
-      <rect
-        x="358"
-        y="378"
-        width="26"
-        height="20"
-        rx="6"
-        className="fill-ink"
-        fillOpacity="0.16"
-      />
-      <TextLine x={282} y={424} w={200} h={9} o={0.13} />
-      <TextLine x={282} y={444} w={140} h={9} o={0.09} />
-      {/* scheduled pill */}
-      <g filter="url(#mg-shadow-sm)">
-        <rect
-          x="500"
-          y="392"
-          width="150"
-          height="48"
-          rx="24"
-          className="fill-ink"
-        />
-      </g>
-      <circle cx="528" cy="416" r="9" className="fill-kokum" />
-      <rect
-        x="546"
-        y="411"
-        width="82"
-        height="10"
-        rx="5"
-        className="fill-paper"
-        fillOpacity="0.85"
-      />
+      <rect x="192" y="466" width="240" height="12" rx="6" className="fill-ink" fillOpacity="0.16" />
+      <rect x="192" y="490" width="160" height="12" rx="6" className="fill-ink" fillOpacity="0.11" />
+
+      <Rosette x={588} y={430} r={30} className="fill-terracotta" o={0.85} />
+      <Rosette x={648} y={492} r={20} className="fill-palm" o={0.7} />
     </Frame>
   );
 }
@@ -281,112 +371,73 @@ function Social() {
 /* ─────────────────────────────── Enquiries ───────────────────────────────── */
 
 function Enquiries() {
-  const sources = [130, 226, 322, 418];
+  const p = "enq";
+  const ys = [116, 190, 264, 338, 412, 486];
+  const colours = [
+    "fill-cobalt",
+    "fill-ochre",
+    "fill-terracotta",
+    "fill-palm",
+    "fill-cobalt",
+    "fill-ochre",
+  ];
   return (
-    <Frame>
-      {/* channels on the left */}
-      {sources.map((y, i) => (
+    <Frame p={p}>
+      {ys.map((y, i) => (
         <g key={y}>
-          <g filter="url(#mg-shadow-sm)">
-            <rect
-              x="70"
-              y={y}
-              width="150"
-              height="62"
-              rx="14"
-              className="fill-paper"
-            />
-          </g>
-          <circle
-            cx="102"
-            cy={y + 31}
-            r="12"
-            className={i % 2 === 0 ? "fill-kokum" : "fill-palm"}
-            fillOpacity="0.85"
-          />
-          <TextLine x={124} y={y + 20} w={72} h={8} />
-          <TextLine x={124} y={y + 36} w={48} h={7} o={0.1} />
-          {/* converging line */}
           <path
-            d={`M220 ${y + 31} C 320 ${y + 31}, 340 300, 440 300`}
+            d={`M186 ${y} C 330 ${y}, 380 301, 508 301`}
             className="stroke-ink"
-            strokeOpacity="0.22"
+            strokeOpacity="0.24"
             strokeWidth="3"
-            strokeDasharray="7 8"
+            strokeDasharray="8 8"
             fill="none"
           />
-        </g>
-      ))}
-      {/* unified inbox */}
-      <g filter="url(#mg-shadow)">
-        <rect
-          x="440"
-          y="150"
-          width="270"
-          height="300"
-          rx="18"
-          className="fill-paper"
-        />
-      </g>
-      <rect
-        x="440"
-        y="150"
-        width="270"
-        height="56"
-        rx="18"
-        className="fill-ink"
-      />
-      <rect x="440" y="188" width="270" height="18" className="fill-ink" />
-      <rect
-        x="466"
-        y="172"
-        width="100"
-        height="11"
-        rx="5.5"
-        className="fill-paper"
-        fillOpacity="0.9"
-      />
-      <circle cx="684" cy="178" r="12" className="fill-kokum" />
-      {[228, 292, 356].map((y) => (
-        <g key={y}>
-          <circle cx="472" cy={y + 22} r="11" className="fill-kokum" fillOpacity="0.3" />
-          <TextLine x={494} y={y + 12} w={130} h={9} />
-          <TextLine x={494} y={y + 30} w={90} h={7} o={0.1} />
-          <rect
-            x="466"
-            y={y + 50}
-            width="220"
-            height="1.5"
-            className="fill-ink"
-            fillOpacity="0.08"
+          <circle
+            cx="150"
+            cy={y}
+            r="30"
+            className={`${colours[i]} stroke-ink`}
+            fillOpacity="0.55"
+            strokeOpacity="0.28"
+            strokeWidth="3"
           />
+          <circle cx="150" cy={y} r="13" className="fill-paper" fillOpacity="0.85" />
         </g>
       ))}
-      {/* instant reply badge */}
-      <g filter="url(#mg-shadow-sm)">
-        <rect
-          x="596"
-          y="410"
-          width="126"
-          height="44"
-          rx="22"
-          className="fill-kokum"
-        />
-      </g>
+
+      {/* the single answer */}
+      <circle cx="566" cy="301" r="112" fill={`url(#${p}-jaali)`} />
+      <circle
+        cx="566"
+        cy="301"
+        r="112"
+        className="stroke-terracotta"
+        strokeOpacity="0.5"
+        strokeWidth="3"
+        fill="none"
+      />
+      <circle
+        cx="566"
+        cy="301"
+        r="88"
+        className="stroke-cobalt"
+        strokeOpacity="0.45"
+        strokeWidth="3"
+        strokeDasharray="5 9"
+        fill="none"
+      />
+      <Rosette x={566} y={301} r={62} className="fill-kokum" o={0.95} />
+      <circle cx="566" cy="301" r="26" className="fill-paper" />
       <path
-        d="M628 424l-10 14h9l-4 10 12-15h-9z"
-        className="fill-paper"
-        fillOpacity="0.95"
+        d="M552 300l11 12 21-24"
+        className="stroke-kokum"
+        strokeWidth="5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        fill="none"
       />
-      <rect
-        x="648"
-        y="427"
-        width="56"
-        height="9"
-        rx="4.5"
-        className="fill-paper"
-        fillOpacity="0.85"
-      />
+      <Frond x={566} y={470} rotate={0} scale={0.7} />
     </Frame>
   );
 }
@@ -394,119 +445,70 @@ function Enquiries() {
 /* ─────────────────────────────── WhatsApp ────────────────────────────────── */
 
 function WhatsApp() {
+  const p = "wa";
   return (
-    <Frame>
-      <g filter="url(#mg-shadow)">
-        <rect
-          x="230"
-          y="80"
-          width="340"
-          height="440"
-          rx="34"
-          className="fill-paper"
-        />
-      </g>
-      {/* header */}
+    <Frame p={p}>
+      <Frond x={108} y={196} rotate={196} scale={0.7} />
+      <Frond x={704} y={430} rotate={16} scale={0.75} />
+
+      <rect x="150" y="92" width="300" height="92" rx="24" fill={`url(#${p}-jaali)`} />
       <rect
-        x="230"
-        y="80"
-        width="340"
-        height="76"
-        rx="34"
-        className="fill-palm"
-      />
-      <rect x="230" y="122" width="340" height="34" className="fill-palm" />
-      <circle cx="278" cy="120" r="18" className="fill-paper" fillOpacity="0.85" />
-      <rect
-        x="308"
-        y="108"
-        width="110"
-        height="11"
-        rx="5.5"
-        className="fill-paper"
-        fillOpacity="0.9"
-      />
-      <rect
-        x="308"
-        y="126"
-        width="64"
-        height="8"
-        rx="4"
-        className="fill-paper"
-        fillOpacity="0.55"
-      />
-      {/* incoming */}
-      <rect
-        x="256"
-        y="186"
-        width="180"
-        height="58"
-        rx="16"
-        className="fill-ink"
-        fillOpacity="0.07"
-      />
-      <TextLine x={274} y={202} w={130} h={9} />
-      <TextLine x={274} y={220} w={90} h={9} o={0.1} />
-      {/* outgoing */}
-      <rect
-        x="332"
-        y="262"
-        width="212"
-        height="76"
-        rx="16"
-        className="fill-palm"
-        fillOpacity="0.25"
-      />
-      <TextLine x={352} y={280} w={168} h={9} o={0.22} />
-      <TextLine x={352} y={298} w={132} h={9} o={0.16} />
-      <path
-        d="M492 322l6 6 12-13M506 322l6 6 12-13"
-        className="stroke-palm"
+        x="150"
+        y="92"
+        width="300"
+        height="92"
+        rx="24"
+        className="stroke-cobalt"
+        strokeOpacity="0.55"
         strokeWidth="3"
+        fill="none"
+      />
+      <rect x="178" y="120" width="200" height="13" rx="6.5" className="fill-ink" fillOpacity="0.2" />
+      <rect x="178" y="146" width="140" height="13" rx="6.5" className="fill-ink" fillOpacity="0.14" />
+
+      {/* the automatic reply */}
+      <rect x="330" y="212" width="330" height="120" rx="26" className="fill-kokum" />
+      <rect x="346" y="228" width="298" height="88" rx="18" fill={`url(#${p}-stripe)`} fillOpacity="0.5" />
+      <rect x="368" y="248" width="230" height="14" rx="7" className="fill-paper" fillOpacity="0.85" />
+      <rect x="368" y="276" width="170" height="14" rx="7" className="fill-paper" fillOpacity="0.6" />
+      <path
+        d="M574 306l9 9 17-18M598 306l9 9 17-18"
+        className="stroke-paper"
+        strokeWidth="4"
         strokeLinecap="round"
         strokeLinejoin="round"
+        fill="none"
       />
-      {/* incoming */}
+
+      <rect x="150" y="360" width="270" height="86" rx="24" fill={`url(#${p}-jaali)`} />
       <rect
-        x="256"
-        y="356"
-        width="150"
-        height="46"
-        rx="16"
-        className="fill-ink"
-        fillOpacity="0.07"
+        x="150"
+        y="360"
+        width="270"
+        height="86"
+        rx="24"
+        className="stroke-terracotta"
+        strokeOpacity="0.55"
+        strokeWidth="3"
+        fill="none"
       />
-      <TextLine x={274} y={374} w={106} h={9} />
-      {/* upsell card */}
-      <g filter="url(#mg-shadow-sm)">
-        <rect
-          x="332"
-          y="418"
-          width="212"
-          height="66"
-          rx="16"
-          className="fill-paper"
-        />
-      </g>
+      <rect x="178" y="392" width="170" height="13" rx="6.5" className="fill-ink" fillOpacity="0.18" />
+
+      {/* upsell */}
       <rect
-        x="348"
-        y="434"
-        width="34"
-        height="34"
-        rx="10"
-        className="fill-kokum"
-        fillOpacity="0.85"
+        x="360"
+        y="454"
+        width="300"
+        height="92"
+        rx="22"
+        className="fill-ochre stroke-ink"
+        fillOpacity="0.5"
+        strokeOpacity="0.24"
+        strokeWidth="3"
       />
-      <TextLine x={394} y={438} w={110} h={9} />
-      <rect
-        x="394"
-        y="456"
-        width="70"
-        height="16"
-        rx="8"
-        className="fill-kokum"
-        fillOpacity="0.18"
-      />
+      <Rosette x={410} y={500} r={26} className="fill-kokum" o={0.9} />
+      <rect x="452" y="482" width="170" height="13" rx="6.5" className="fill-ink" fillOpacity="0.22" />
+      <rect x="452" y="508" width="110" height="13" rx="6.5" className="fill-ink" fillOpacity="0.15" />
     </Frame>
   );
 }
@@ -514,109 +516,60 @@ function WhatsApp() {
 /* ──────────────────────────────── OTA ────────────────────────────────────── */
 
 function Ota() {
-  const spokes = [
-    { x: 636, y: 150 },
-    { x: 690, y: 258 },
-    { x: 660, y: 372 },
-    { x: 560, y: 452 },
-    { x: 430, y: 470 },
-  ];
+  const p = "ota";
+  const nodes = Array.from({ length: 8 }, (_, i) => {
+    const a = (i * Math.PI * 2) / 8 - Math.PI / 2;
+    return {
+      x: 400 + Math.cos(a) * 205,
+      y: 300 + Math.sin(a) * 175,
+      c: ["fill-cobalt", "fill-ochre", "fill-terracotta", "fill-palm"][i % 4],
+    };
+  });
   return (
-    <Frame>
-      {/* connections */}
-      {spokes.map((s) => (
+    <Frame p={p}>
+      <circle cx="400" cy="300" r="230" fill={`url(#${p}-jaali)`} fillOpacity="0.6" />
+      {[230, 196, 162].map((r, i) => (
+        <circle
+          key={r}
+          cx="400"
+          cy="300"
+          r={r}
+          className={i % 2 === 0 ? "stroke-cobalt" : "stroke-terracotta"}
+          strokeOpacity="0.4"
+          strokeWidth="3"
+          strokeDasharray={i === 1 ? "6 10" : undefined}
+          fill="none"
+        />
+      ))}
+
+      {nodes.map((n) => (
         <path
-          key={`${s.x}-${s.y}`}
-          d={`M270 300 C ${(270 + s.x) / 2} 300, ${(270 + s.x) / 2} ${s.y}, ${s.x - 8} ${s.y}`}
+          key={`l-${n.x.toFixed(0)}-${n.y.toFixed(0)}`}
+          d={`M400 300L${n.x} ${n.y}`}
           className="stroke-ink"
           strokeOpacity="0.2"
           strokeWidth="3"
           strokeDasharray="7 8"
-          fill="none"
         />
       ))}
-      {/* channel pills */}
-      {spokes.map((s, i) => (
-        <g key={`pill-${s.x}`}>
-          <g filter="url(#mg-shadow-sm)">
-            <rect
-              x={s.x - 8}
-              y={s.y - 26}
-              width="132"
-              height="52"
-              rx="26"
-              className="fill-paper"
-            />
-          </g>
+      {nodes.map((n) => (
+        <g key={`n-${n.x.toFixed(0)}-${n.y.toFixed(0)}`}>
           <circle
-            cx={s.x + 20}
-            cy={s.y}
-            r="11"
-            className={i % 2 === 0 ? "fill-kokum" : "fill-palm"}
-            fillOpacity="0.85"
+            cx={n.x}
+            cy={n.y}
+            r="34"
+            className={`${n.c} stroke-ink`}
+            fillOpacity="0.5"
+            strokeOpacity="0.26"
+            strokeWidth="3"
           />
-          <rect
-            x={s.x + 40}
-            y={s.y - 5}
-            width="66"
-            height="10"
-            rx="5"
-            className="fill-ink"
-            fillOpacity="0.16"
-          />
+          <circle cx={n.x} cy={n.y} r="15" className="fill-paper" fillOpacity="0.9" />
         </g>
       ))}
-      {/* the single source of truth */}
-      <g filter="url(#mg-shadow)">
-        <rect
-          x="90"
-          y="196"
-          width="200"
-          height="208"
-          rx="20"
-          className="fill-paper"
-        />
-      </g>
-      <rect
-        x="90"
-        y="196"
-        width="200"
-        height="52"
-        rx="20"
-        className="fill-kokum"
-      />
-      <rect x="90" y="230" width="200" height="18" className="fill-kokum" />
-      <rect
-        x="114"
-        y="216"
-        width="88"
-        height="11"
-        rx="5.5"
-        className="fill-paper"
-        fillOpacity="0.9"
-      />
-      <TextLine x={114} y={274} w={150} h={11} />
-      <TextLine x={114} y={300} w={110} h={11} o={0.1} />
-      <rect
-        x="114"
-        y="330"
-        width="152"
-        height="46"
-        rx="12"
-        className="fill-ink"
-        fillOpacity="0.06"
-      />
-      <rect
-        x="130"
-        y="346"
-        width="60"
-        height="14"
-        rx="7"
-        className="fill-kokum"
-        fillOpacity="0.7"
-      />
-      <circle cx="270" cy="300" r="14" className="fill-kokum" />
-      <circle cx="270" cy="300" r="24" className="stroke-kokum" strokeWidth="2" strokeOpacity="0.35" />
+
+      <Rosette x={400} y={300} r={74} className="fill-kokum" o={0.95} />
+      <circle cx="400" cy="300" r="34" className="fill-paper" />
+      <Rosette x={400} y={300} r={20} className="fill-kokum" o={0.9} />
     </Frame>
   );
 }
@@ -624,94 +577,76 @@ function Ota() {
 /* ─────────────────────────────── Bookings ────────────────────────────────── */
 
 function Bookings() {
+  const p = "bok";
   const cols = 7;
-  const rows = 4;
-  const cw = 72;
-  const ch = 62;
-  const x0 = 154;
-  const y0 = 214;
-  const filled = new Set([3, 4, 9, 15, 16, 17, 22]);
-
+  const rows = 5;
+  const cw = 84;
+  const chh = 82;
+  const x0 = 118;
+  const y0 = 108;
+  const tinted: Record<number, string> = {
+    2: "fill-cobalt",
+    5: "fill-ochre",
+    8: "fill-terracotta",
+    13: "fill-palm",
+    18: "fill-cobalt",
+    22: "fill-ochre",
+    27: "fill-terracotta",
+    31: "fill-palm",
+    33: "fill-cobalt",
+  };
   return (
-    <Frame>
-      <g filter="url(#mg-shadow)">
-        <rect
-          x="110"
-          y="110"
-          width="580"
-          height="390"
-          rx="20"
-          className="fill-paper"
-        />
-      </g>
-      <rect
-        x="110"
-        y="110"
-        width="580"
-        height="62"
-        rx="20"
-        className="fill-ink"
-      />
-      <rect x="110" y="152" width="580" height="20" className="fill-ink" />
-      <rect
-        x="146"
-        y="134"
-        width="120"
-        height="12"
-        rx="6"
-        className="fill-paper"
-        fillOpacity="0.9"
-      />
-      <circle cx="628" cy="141" r="11" className="fill-kokum" />
-      {/* weekday ticks */}
-      {Array.from({ length: cols }).map((_, c) => (
-        <rect
-          key={`h-${c}`}
-          x={x0 + c * cw + 14}
-          y={190}
-          width="26"
-          height="7"
-          rx="3.5"
-          className="fill-ink"
-          fillOpacity="0.14"
-        />
-      ))}
-      {/* day cells */}
+    <Frame p={p}>
       {Array.from({ length: rows * cols }).map((_, i) => {
         const c = i % cols;
         const r = Math.floor(i / cols);
-        const isFilled = filled.has(i);
+        const tint = tinted[i];
         return (
-          <rect
-            key={i}
-            x={x0 + c * cw}
-            y={y0 + r * ch}
-            width={cw - 12}
-            height={ch - 12}
-            rx="10"
-            className={isFilled ? "fill-kokum" : "fill-ink"}
-            fillOpacity={isFilled ? 0.22 : 0.05}
-          />
+          <g key={i}>
+            <rect
+              x={x0 + c * cw}
+              y={y0 + r * chh}
+              width={cw - 14}
+              height={chh - 14}
+              rx="12"
+              className={`${tint ?? "fill-paper"} stroke-ink`}
+              fillOpacity={tint ? 0.45 : 0.75}
+              strokeOpacity="0.2"
+              strokeWidth="2.5"
+            />
+            {i % 3 === 0 && (
+              <circle
+                cx={x0 + c * cw + (cw - 14) / 2}
+                cy={y0 + r * chh + (chh - 14) / 2}
+                r="6"
+                className="fill-ink"
+                fillOpacity="0.14"
+              />
+            )}
+          </g>
         );
       })}
-      {/* a long stay spanning most of a week */}
+
+      {/* the long stay, running across weeks */}
       <rect
-        x={x0 + 2}
-        y={y0 + 2 * ch + 12}
-        width={cw * 5 - 16}
-        height="26"
-        rx="13"
+        x={x0 + cw + 4}
+        y={y0 + 2 * chh + 16}
+        width={cw * 5 - 22}
+        height="36"
+        rx="18"
         className="fill-kokum"
       />
       <rect
-        x={x0 + 18}
-        y={y0 + 2 * ch + 20}
-        width="90"
-        height="9"
-        rx="4.5"
-        className="fill-paper"
-        fillOpacity="0.85"
+        x={x0 + 4}
+        y={y0 + 3 * chh + 16}
+        width={cw * 4 - 22}
+        height="36"
+        rx="18"
+        className="fill-kokum"
+        fillOpacity="0.55"
       />
+      <Rosette x={x0 + cw + 30} y={y0 + 2 * chh + 34} r={13} className="fill-paper" o={0.95} />
+      <Rosette x={x0 + 30} y={y0 + 3 * chh + 34} r={13} className="fill-paper" o={0.9} />
     </Frame>
   );
 }
@@ -719,105 +654,79 @@ function Bookings() {
 /* ─────────────────────────────── Loyalty ─────────────────────────────────── */
 
 function Loyalty() {
+  const p = "loy";
+  const guests = Array.from({ length: 10 }, (_, i) => {
+    const a = (i * Math.PI * 2) / 10 - Math.PI / 2;
+    return {
+      x: 400 + Math.cos(a) * 208,
+      y: 300 + Math.sin(a) * 180,
+      c: ["fill-cobalt", "fill-ochre", "fill-terracotta", "fill-palm", "fill-kokum"][i % 5],
+      r: i % 3 === 0 ? 26 : 19,
+    };
+  });
   return (
-    <Frame>
-      {/* return arc */}
+    <Frame p={p}>
+      <circle cx="400" cy="300" r="238" fill={`url(#${p}-jaali)`} fillOpacity="0.55" />
+      {[238, 208, 176, 146].map((r, i) => (
+        <circle
+          key={r}
+          cx="400"
+          cy="300"
+          r={r}
+          className={i % 2 === 0 ? "stroke-terracotta" : "stroke-cobalt"}
+          strokeOpacity="0.4"
+          strokeWidth="3"
+          strokeDasharray={i % 2 === 0 ? "5 10" : undefined}
+          fill="none"
+        />
+      ))}
+
+      {guests.map((g) => (
+        <g key={`${g.x.toFixed(0)}-${g.y.toFixed(0)}`}>
+          <circle
+            cx={g.x}
+            cy={g.y}
+            r={g.r}
+            className={`${g.c} stroke-ink`}
+            fillOpacity="0.55"
+            strokeOpacity="0.25"
+            strokeWidth="3"
+          />
+          <circle cx={g.x} cy={g.y} r={g.r * 0.42} className="fill-paper" fillOpacity="0.9" />
+        </g>
+      ))}
+
+      {/* the return */}
       <path
-        d="M400 168a132 132 0 1 1-124 176"
+        d="M400 92a208 208 0 0 1 178 316"
         className="stroke-kokum"
-        strokeOpacity="0.35"
-        strokeWidth="4"
+        strokeWidth="5"
         strokeLinecap="round"
-        strokeDasharray="10 12"
         fill="none"
       />
       <path
-        d="M262 322l14 26 28-12"
+        d="M552 388l30 32 34-26"
         className="stroke-kokum"
-        strokeWidth="4"
+        strokeWidth="5"
         strokeLinecap="round"
         strokeLinejoin="round"
         fill="none"
       />
-      {/* guest card */}
-      <g filter="url(#mg-shadow)">
-        <rect
-          x="272"
-          y="216"
-          width="256"
-          height="176"
-          rx="20"
-          className="fill-paper"
-        />
-      </g>
-      <circle cx="326" cy="270" r="24" className="fill-kokum" fillOpacity="0.85" />
-      <path
-        d="M326 262a8 8 0 1 0 0-1zM310 288c3-8 9-12 16-12s13 4 16 12z"
-        className="fill-paper"
-        fillOpacity="0.9"
-      />
-      <TextLine x={366} y={256} w={112} h={11} />
-      <TextLine x={366} y={276} w={72} h={9} o={0.1} />
-      {/* stars */}
-      {[0, 1, 2, 3, 4].map((i) => (
-        <path
-          key={i}
-          d={`M${300 + i * 34} 330l5.6 11.4 12.6 1.8-9.1 8.9 2.2 12.5-11.3-5.9-11.3 5.9 2.2-12.5-9.1-8.9 12.6-1.8z`}
-          className="fill-kokum"
-          fillOpacity={i === 4 ? 0.3 : 0.9}
-        />
-      ))}
-      {/* returning guests */}
-      {[
-        { x: 168, y: 190 },
-        { x: 610, y: 214 },
-        { x: 596, y: 400 },
-      ].map((p, i) => (
-        <g key={p.x}>
-          <g filter="url(#mg-shadow-sm)">
-            <circle cx={p.x} cy={p.y} r="30" className="fill-paper" />
-          </g>
+
+      <Rosette x={400} y={300} r={86} className="fill-kokum" o={0.95} />
+      <circle cx="400" cy="300" r="42" className="fill-paper" />
+      {[0, 1, 2, 3, 4].map((i) => {
+        const a = (i * Math.PI * 2) / 5 - Math.PI / 2;
+        return (
           <circle
-            cx={p.x}
-            cy={p.y - 7}
-            r="9"
-            className={i === 1 ? "fill-palm" : "fill-kokum"}
-            fillOpacity="0.75"
+            key={i}
+            cx={400 + Math.cos(a) * 24}
+            cy={300 + Math.sin(a) * 24}
+            r="7"
+            className="fill-kokum"
           />
-          <path
-            d={`M${p.x - 14} ${p.y + 16}c3-9 8-13 14-13s11 4 14 13z`}
-            className={i === 1 ? "fill-palm" : "fill-kokum"}
-            fillOpacity="0.75"
-          />
-        </g>
-      ))}
-      {/* repeat badge */}
-      <g filter="url(#mg-shadow-sm)">
-        <rect
-          x="316"
-          y="420"
-          width="168"
-          height="48"
-          rx="24"
-          className="fill-ink"
-        />
-      </g>
-      <path
-        d="M348 436a12 12 0 1 0 4-9"
-        className="stroke-kokum"
-        strokeWidth="3.5"
-        strokeLinecap="round"
-        fill="none"
-      />
-      <rect
-        x="378"
-        y="439"
-        width="82"
-        height="10"
-        rx="5"
-        className="fill-paper"
-        fillOpacity="0.85"
-      />
+        );
+      })}
     </Frame>
   );
 }
@@ -837,9 +746,5 @@ const glyphs: Record<string, () => React.ReactElement> = {
 export default function ModuleGlyph({ slug }: { slug: string }) {
   const Glyph = glyphs[slug];
   if (!Glyph) return null;
-  return (
-    <div className="flex h-full w-full items-center justify-center p-2">
-      <Glyph />
-    </div>
-  );
+  return <Glyph />;
 }

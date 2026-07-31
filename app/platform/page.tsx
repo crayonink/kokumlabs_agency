@@ -92,14 +92,17 @@ export default function PlatformPage() {
                   className={`lg:col-span-6 ${flip ? "lg:order-1" : "lg:order-2"}`}
                 >
                   <Reveal delay={120}>
-                    <PhotoSlot
-                      src={photos.module[m.slug]}
-                      alt={`${m.name} — ${m.short}`}
-                      aspect="aspect-[4/3]"
-                      tone={tones[i % tones.length]}
-                      rounded="rounded-3xl"
-                      overlay={<ModuleGlyph slug={m.slug} />}
-                    />
+                    {photos.module[m.slug] ? (
+                      <PhotoSlot
+                        src={photos.module[m.slug]}
+                        alt={`${m.name} — ${m.short}`}
+                        aspect="aspect-[4/3]"
+                        tone={tones[i % tones.length]}
+                        rounded="rounded-3xl"
+                      />
+                    ) : (
+                      <ModuleGlyph slug={m.slug} />
+                    )}
                   </Reveal>
                 </div>
               </div>

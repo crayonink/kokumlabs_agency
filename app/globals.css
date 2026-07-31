@@ -30,6 +30,13 @@
   /* Secondary — coastal palm, used sparingly */
   --color-palm: #3f5c4a;
 
+  /* Ornament palette — lifted from the Fontainhas photographs: cobalt
+     housefronts, ochre walls, terracotta roof tiles. Used in the platform
+     illustrations, not in the page furniture. */
+  --color-cobalt: #2f4d8f;
+  --color-ochre: #d99b31;
+  --color-terracotta: #c1663f;
+
   --font-display: var(--font-fraunces), ui-serif, Georgia, serif;
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 }
