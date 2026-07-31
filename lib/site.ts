@@ -20,8 +20,7 @@ export const contact = {
    *  Leave as null and the site gracefully shows contact cards instead of an embed. */
   calLink: null as string | null,
 
-  /** TODO */
-  email: "hello@kokumlabs.com",
+  email: "rupa@kokumlabs.in",
   phoneDisplay: "+91 78278 58997",
   phoneHref: "+917827858997",
 
@@ -39,8 +38,9 @@ export function whatsappUrl(message: string = contact.whatsappMessage) {
 export const site = {
   name: "Kokum Labs",
   tagline: "AI-native operations for hospitality",
-  /** TODO: your real domain — used for SEO metadata and social share cards. */
-  url: "https://kokumlabs.com",
+  /** Inferred from the rupa@kokumlabs.in address — used for SEO metadata,
+   *  the sitemap and social share cards. Change if the site lives elsewhere. */
+  url: "https://kokumlabs.in",
   description:
     "An AI-native platform for hotels, resorts, homestays and mid-term rentals. Website, social, guest enquiries, WhatsApp, OTA listings, bookings and loyalty — run from one place.",
 } as const;
