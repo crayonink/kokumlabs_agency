@@ -38,9 +38,9 @@ export function whatsappUrl(message: string = contact.whatsappMessage) {
 export const site = {
   name: "Kokum Labs",
   tagline: "AI-native operations for hospitality",
-  /** Inferred from the rupa@kokumlabs.in address — used for SEO metadata,
-   *  the sitemap and social share cards. Change if the site lives elsewhere. */
-  url: "https://kokumlabs.in",
+  /** Canonical origin — drives the sitemap, robots.txt, canonical URLs and
+   *  OG/Twitter share cards. Must match the domain the site is served from. */
+  url: "https://agency.kokumlabs.in",
   description:
     "An AI-native platform for hotels, resorts, homestays and mid-term rentals. Website, social, guest enquiries, WhatsApp, OTA listings, bookings and loyalty — run from one place.",
 } as const;
