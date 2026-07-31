@@ -35,6 +35,11 @@ type Props = {
   className?: string;
   priority?: boolean;
   rounded?: string;
+  /**
+   * Drawn on top of the gradient when there is no photograph — used by the
+   * platform page to show an illustration of what each module does.
+   */
+  overlay?: React.ReactNode;
 };
 
 export default function PhotoSlot({
@@ -46,6 +51,7 @@ export default function PhotoSlot({
   className = "",
   priority = false,
   rounded = "rounded-2xl",
+  overlay,
 }: Props) {
   return (
     <figure className={className}>
@@ -70,8 +76,9 @@ export default function PhotoSlot({
           >
             {/* Grain, so the gradient reads as printed paper rather than CSS */}
             <div className="grain absolute inset-0 opacity-[0.18] mix-blend-overlay" />
+            {overlay && <div className="absolute inset-0">{overlay}</div>}
             {/* A soft vignette to give the frame depth */}
-            <div className="absolute inset-0 bg-[radial-gradient(120%_100%_at_50%_0%,transparent_55%,rgba(26,21,18,0.22)_100%)]" />
+            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(120%_100%_at_50%_0%,transparent_55%,rgba(26,21,18,0.22)_100%)]" />
           </div>
         )}
       </div>

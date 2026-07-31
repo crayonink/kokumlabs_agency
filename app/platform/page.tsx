@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { modules, photos } from "@/lib/site";
 import CTASection from "@/components/CTASection";
+import ModuleGlyph from "@/components/ModuleGlyph";
 import PageHero from "@/components/PageHero";
 import PhotoSlot from "@/components/PhotoSlot";
 import Reveal from "@/components/Reveal";
@@ -97,6 +98,7 @@ export default function PlatformPage() {
                       aspect="aspect-[4/3]"
                       tone={tones[i % tones.length]}
                       rounded="rounded-3xl"
+                      overlay={<ModuleGlyph slug={m.slug} />}
                     />
                   </Reveal>
                 </div>
