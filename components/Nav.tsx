@@ -71,7 +71,7 @@ export default function Nav() {
           <div className="hidden md:block">
             <Link
               href="/contact"
-              className="inline-flex items-center rounded-full bg-ink px-5 py-2.5 text-[0.9375rem] font-medium text-paper transition-all duration-200 hover:-translate-y-0.5 hover:bg-kokum hover:shadow-lg hover:shadow-kokum/20"
+              className="inline-flex items-center rounded-full bg-kokum-deep px-5 py-2.5 text-[0.9375rem] font-medium text-paper transition-all duration-200 hover:-translate-y-0.5 hover:bg-kokum hover:shadow-lg hover:shadow-kokum/35"
             >
               Book a demo
             </Link>
@@ -121,7 +121,7 @@ export default function Nav() {
           <Link
             href="/contact"
             onClick={() => setOpen(false)}
-            className="mt-4 inline-flex items-center justify-center rounded-full bg-ink px-6 py-3.5 font-medium text-paper"
+            className="mt-4 inline-flex items-center justify-center rounded-full bg-kokum-deep px-6 py-3.5 font-medium text-paper transition-colors hover:bg-kokum"
           >
             Book a demo
           </Link>

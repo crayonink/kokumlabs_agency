@@ -5,7 +5,19 @@ import Link from "next/link";
 type ButtonProps = {
   href: string;
   children: React.ReactNode;
-  variant?: "primary" | "secondary" | "ghost";
+  /**
+   * `accent` is the primary conversion CTA ("Book a demo") — muted red at rest,
+   * full kokum on hover. `onDark` / `onDarkSolid` are for ink-coloured sections;
+   * use those rather than overriding colours via className, since Tailwind
+   * resolves competing utilities by stylesheet order, not class order.
+   */
+  variant?:
+    | "primary"
+    | "accent"
+    | "secondary"
+    | "onDark"
+    | "onDarkSolid"
+    | "ghost";
   size?: "md" | "lg";
   external?: boolean;
   className?: string;
@@ -30,8 +42,14 @@ export function Button({
   const variants = {
     primary:
       "bg-ink text-paper hover:bg-kokum hover:-translate-y-0.5 hover:shadow-lg hover:shadow-kokum/20",
+    accent:
+      "bg-kokum-deep text-paper hover:bg-kokum hover:-translate-y-0.5 hover:shadow-lg hover:shadow-kokum/35",
     secondary:
       "border border-line-2 bg-transparent text-ink hover:border-ink hover:bg-ink hover:text-paper",
+    onDark:
+      "border border-paper-3/25 bg-transparent text-paper-2 hover:border-paper hover:bg-paper hover:text-ink",
+    onDarkSolid:
+      "bg-paper text-ink hover:bg-kokum hover:text-paper hover:-translate-y-0.5 hover:shadow-lg hover:shadow-kokum/35",
     ghost: "text-ink hover:text-kokum underline-offset-4 hover:underline px-0",
   };
 

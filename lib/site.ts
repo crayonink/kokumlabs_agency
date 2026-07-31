@@ -229,7 +229,7 @@ export const founders = [
     bio: "Built payment infrastructure at Billdesk, where money moving correctly is the entire job. Owns everything in the platform that touches a rupee — deposits, staged payments, refunds and reconciliation.",
     /** TODO: optional */
     linkedin: "",
-    photo: null as string | null,
+    photo: "/photos/rupanjana-mitra.jpg" as string | null,
   },
 ];
 

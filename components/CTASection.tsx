@@ -26,17 +26,19 @@ export default function CTASection({
           <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Button
               href="/contact"
+              variant="accent"
               size="lg"
-              className="w-full bg-paper text-ink hover:bg-kokum hover:text-paper sm:w-auto"
+              className="w-full sm:w-auto"
             >
               Book a demo
               <Arrow />
             </Button>
             <Button
               href={whatsappUrl()}
+              variant="onDark"
               size="lg"
               external
-              className="w-full border border-paper-3/25 text-paper-2 hover:border-paper hover:bg-paper hover:text-ink sm:w-auto"
+              className="w-full sm:w-auto"
             >
               <WhatsAppIcon />
               Message on WhatsApp

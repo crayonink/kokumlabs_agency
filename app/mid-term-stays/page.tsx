@@ -59,7 +59,12 @@ export default function MidTermStaysPage() {
         sub={midTerm.sub}
       >
         <div className="flex flex-col gap-3 sm:flex-row">
-          <Button href="/contact" size="lg" className="w-full sm:w-auto">
+          <Button
+            href="/contact"
+            variant="accent"
+            size="lg"
+            className="w-full sm:w-auto"
+          >
             Talk to us about long stays
             <Arrow />
           </Button>

@@ -123,8 +123,8 @@ export default function AboutPage() {
               <article className="flex h-full flex-col">
                 <PhotoSlot
                   src={f.photo}
-                  alt={f.name}
-                  aspect="aspect-[4/3]"
+                  alt={`${f.name}, co-founder of Kokum Labs`}
+                  aspect="aspect-[3/4]"
                   tone={i === 0 ? "dawn" : "palm"}
                   rounded="rounded-2xl"
                 />

@@ -41,9 +41,11 @@ The site ships with warm abstract placeholders so it is presentable before you h
 Slots worth filling first, in order of impact:
 
 1. **Home hero** — `app/page.tsx`, the `aspect-[4/5]` slot. Your single best property photograph.
-2. **Founders** — `app/about/page.tsx`. Set `founders[].photo` in `lib/site.ts` and both cards pick it up.
+2. **Founders** — set `founders[].photo` in `lib/site.ts`. Rupanjana's is in; Apratim's card still shows a placeholder. These slots are **3:4 portrait** — supply a portrait crop or it will be centre-cropped.
 3. **About story** — `app/about/page.tsx`, a photo of the two of you.
 4. Home "Who it's for" and the Platform module rows — nice to have, not urgent.
+
+Keep source images under ~500 KB. `rupa_amoli.PNG` was 2.4 MB; re-encoded as JPEG q88 at the same resolution it is 336 KB, which `next/image` then serves at ~81 KB.
 
 Remove the `caption` prop once a real photo is in; the captions currently say "Replace with…" on purpose.
 

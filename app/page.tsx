@@ -65,6 +65,7 @@ export default function Home() {
                 <div className="mt-10 flex flex-col gap-3 sm:flex-row">
                   <Button
                     href="/contact"
+                    variant="accent"
                     size="lg"
                     className="w-full sm:w-auto"
                   >
@@ -249,8 +250,9 @@ export default function Home() {
                 </p>
                 <Button
                   href="/mid-term-stays"
+                  variant="onDarkSolid"
                   size="lg"
-                  className="mt-10 bg-paper text-ink hover:bg-kokum hover:text-paper"
+                  className="mt-10"
                 >
                   How mid-term stays work
                   <Arrow />

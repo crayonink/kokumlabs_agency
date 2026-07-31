@@ -20,7 +20,9 @@
   --color-line: #e3d9ca;
   --color-line-2: #d3c6b2;
 
-  /* Accent — kokum */
+  /* Accent — kokum. `deep` is the resting state of the primary CTA,
+     `kokum` is what it becomes on hover. */
+  --color-kokum-deep: #6f1e2d;
   --color-kokum: #8c2437;
   --color-kokum-2: #a8394d;
   --color-kokum-3: #f4e6e6;
