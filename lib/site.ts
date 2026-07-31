@@ -11,7 +11,7 @@
 
 export const contact = {
   /** WhatsApp number in full international format, digits only, no "+". */
-  whatsapp: "919953728690",
+  whatsapp: "917827858997",
   /** Pre-filled message when someone taps the WhatsApp button. */
   whatsappMessage:
     "Hi Kokum Labs — I run a property and I'd like to see a demo.",
@@ -22,8 +22,8 @@ export const contact = {
 
   /** TODO */
   email: "hello@kokumlabs.com",
-  phoneDisplay: "+91 99537 28690",
-  phoneHref: "+919953728690",
+  phoneDisplay: "+91 78278 58997",
+  phoneHref: "+917827858997",
 
   /** TODO: optional — remove any you don't use, the footer adapts. */
   social: {
@@ -221,9 +221,8 @@ export const founders = [
     photo: null as string | null,
   },
   {
-    /** TODO: real name */
-    name: "Founder Two",
-    /** TODO: real title */
+    name: "Rupanjana Mitra",
+    /** TODO: confirm title */
     role: "Co-founder — Payments & Platform",
     from: "Billdesk",
     /** TODO: rewrite in their own words */
