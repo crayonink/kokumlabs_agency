@@ -1,36 +1,101 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Kokum Labs — website
 
-## Getting Started
+Marketing site for Kokum Labs: an AI-native platform for hotels, resorts, homestays and mid-term rentals.
 
-First, run the development server:
+Next.js 16 (App Router) · React 19 · Tailwind v4 · TypeScript. Every page is statically prerendered.
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm run dev     # http://localhost:3000
+npm run build   # production build
+npm run lint
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🚨 Launch checklist
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Everything below lives in **one file**: [`lib/site.ts`](lib/site.ts). Search it for `TODO` — that is the whole list.
 
-## Learn More
+| What | Where | Currently |
+| --- | --- | --- |
+| WhatsApp number | `contact.whatsapp` | `919999999999` — placeholder |
+| cal.com booking link | `contact.calLink` | `null` — see note below |
+| Email address | `contact.email` | `hello@kokumlabs.com` — placeholder |
+| Phone number | `contact.phoneDisplay` / `phoneHref` | placeholder |
+| LinkedIn / Instagram | `contact.social` | placeholder — delete a line to hide that link |
+| Live domain | `site.url` | `https://kokumlabs.com` — used for SEO + sitemap |
+| **Both founders' real names** | `founders[].name` | `Founder One` / `Founder Two` |
+| Founder titles and bios | `founders[].role` / `.bio` | written for you — rewrite in your own voice |
+| Pricing answer in the FAQ | `faqs` — last entry | describes the model, gives no numbers |
 
-To learn more about Next.js, take a look at the following resources:
+**About `contact.calLink`:** leave it `null` and the Contact page shows a WhatsApp / email / phone card instead — it looks finished either way. Set it to `"yourname/demo"` (for `cal.com/yourname/demo`) and the scheduler embed appears automatically, with the direct routes moving to a secondary card beneath.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Photography
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The site ships with warm abstract placeholders so it is presentable before you have shot anything. To use real photos, drop files into `public/photos/` and pass `src` to the slot:
 
-## Deploy on Vercel
+```tsx
+<PhotoSlot src="/photos/verandah.jpg" alt="..." />
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Slots worth filling first, in order of impact:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. **Home hero** — `app/page.tsx`, the `aspect-[4/5]` slot. Your single best property photograph.
+2. **Founders** — `app/about/page.tsx`. Set `founders[].photo` in `lib/site.ts` and both cards pick it up.
+3. **About story** — `app/about/page.tsx`, a photo of the two of you.
+4. Home "Who it's for" and the Platform module rows — nice to have, not urgent.
+
+Remove the `caption` prop once a real photo is in; the captions currently say "Replace with…" on purpose.
+
+---
+
+## Pages
+
+| Route | Job |
+| --- | --- |
+| `/` | The full pitch — problem, seven modules, mid-term wedge, how it works, founders, FAQ |
+| `/platform` | Each of the seven modules in depth, plus why one system beats seven tools |
+| `/mid-term-stays` | The 30–180 night offering: economics, sourcing process, guest types, fit |
+| `/about` | The story, the two of you, six operating principles |
+| `/contact` | The demo booking page |
+
+## Structure
+
+```
+app/
+  layout.tsx          fonts, SEO metadata, nav + footer shell
+  page.tsx            home
+  platform/           mid-term-stays/  about/  contact/
+  globals.css         design tokens — colours, type, reveal animation
+  icon.svg  sitemap.ts  robots.ts
+components/
+  Nav  Footer  PageHero  CTASection  FAQ  CalEmbed  PhotoSlot  Reveal  Logo  ui
+lib/site.ts           ← all copy and config
+```
+
+Colours, fonts and spacing are defined once as Tailwind v4 tokens in `app/globals.css` (`--color-kokum`, `--color-paper`, `--color-ink`…). Change a token there and it changes everywhere.
+
+---
+
+## Deploying
+
+**Vercel** (easiest — same company as Next.js):
+
+```bash
+npx vercel        # preview
+npx vercel --prod # live
+```
+
+Or push to GitHub and import the repo at [vercel.com/new](https://vercel.com/new). Zero configuration needed; add your domain in the project settings.
+
+**Netlify / Cloudflare Pages** also work — build command `npm run build`, and install the Next.js adapter each platform prompts you for.
+
+After the domain is live, set `site.url` in `lib/site.ts` so the sitemap and social share cards point at the right place.
+
+---
+
+## Notes
+
+- `next.config.ts` pins `turbopack.root` to this folder. There is an unrelated `package-lock.json` in `C:\Users\RUPA\` that Next.js otherwise mistakes for the workspace root.
+- Accessibility: skip link, visible focus rings, `prefers-reduced-motion` honoured, semantic landmarks throughout.
+- There is no analytics on the site yet. Vercel Analytics is one line in `layout.tsx` when you want it.
