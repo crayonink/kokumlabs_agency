@@ -323,7 +323,7 @@ export default function Home() {
               />
               <PhotoSlot
                 src={photos.whoItsFor}
-                alt="The living room of an owner-run homestay, with cane furniture and a marble floor"
+                alt="The living and dining room of an owner-run homestay, with cane furniture and a marble floor"
                 aspect="aspect-[4/5]"
                 tone="palm"
                 className="mt-10"
