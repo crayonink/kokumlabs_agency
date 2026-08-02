@@ -42,3 +42,7 @@ next-env.d.ts
 
 # staging area for photographs - originals stay out of the repo
 /photos-inbox
+
+# strategy and source documents - never commit
+*.pdf
+*.docx
