@@ -2,10 +2,15 @@ import Link from "next/link";
 import {
   founders,
   howItWorks,
+  metrics,
   midTerm,
   modules,
+  otaTax,
   photos,
+  pillars,
+  positioning,
   segments,
+  sequencing,
   whatsappUrl,
 } from "@/lib/site";
 import CTASection from "@/components/CTASection";
@@ -39,26 +44,23 @@ export default function Home() {
           <div className="grid items-center gap-14 lg:grid-cols-12 lg:gap-16">
             <div className="lg:col-span-7">
               <Reveal>
-                <p className="eyebrow">AI-native hospitality operations</p>
+                <p className="eyebrow">{positioning.eyebrow}</p>
               </Reveal>
 
               <Reveal delay={80}>
                 <h1 className="mt-6 text-[2.75rem] leading-[1.03] sm:text-6xl lg:text-[4.25rem]">
-                  Run your property
+                  Build a brand,
                   <br />
-                  from one place.
-                  <br />
-                  <span className="text-kokum italic">Fill it</span> from
-                  everywhere.
+                  <span className="text-kokum italic">not a listing</span>.
                 </h1>
               </Reveal>
 
               <Reveal delay={160}>
                 <p className="mt-8 max-w-xl text-lg leading-relaxed text-ink-2 md:text-xl">
-                  Your website, social media, guest enquiries, WhatsApp, OTA
-                  listings, bookings and loyalty — unified into one AI-native
-                  platform that answers guests while you sleep, and finds you
-                  the ones who stay for months.
+                  An OTA booking costs you 22–28% all in — including from guests
+                  who have already stayed with you once. We reduce that
+                  dependency: own your guest data, capture the branded demand you
+                  are already creating, and fill the months that sit empty.
                 </p>
               </Reveal>
 
@@ -100,8 +102,12 @@ export default function Home() {
                     Built by two engineers from{" "}
                     <strong className="font-semibold text-ink">Amazon</strong>{" "}
                     and{" "}
-                    <strong className="font-semibold text-ink">Billdesk</strong>
-                    . You will always be talking to the people who built it.
+                    <strong className="font-semibold text-ink">Billdesk</strong>{" "}
+                    who{" "}
+                    <strong className="font-semibold text-ink">
+                      run a homestay themselves
+                    </strong>
+                    . We built it for our own property first.
                   </p>
                 </div>
               </Reveal>
@@ -137,7 +143,7 @@ export default function Home() {
                     .
                   </>
                 }
-                sub="Most independent properties run across a booking engine, a channel manager, two inboxes, three social apps and a personal WhatsApp — none of which talk to each other."
+                sub="Most independent properties run across a booking engine, a channel manager, two inboxes, three social apps and a personal WhatsApp — none of which talk to each other. We know, because we ran ours that way for years."
               />
             </Reveal>
           </div>
@@ -179,13 +185,133 @@ export default function Home() {
         </div>
       </Section>
 
+      {/* ──────────────────────────── The OTA tax ─────────────────────────── */}
+      <Section tone="ink">
+        <div className="grid gap-14 lg:grid-cols-12 lg:gap-20">
+          <div className="lg:col-span-5">
+            <Reveal>
+              <p className="eyebrow mb-5 text-kokum-2">The economics</p>
+              <p className="font-[family-name:var(--font-display)] text-[4rem] leading-none text-kokum-2 tabular-nums sm:text-[5rem]">
+                {otaTax.stat}
+              </p>
+              <p className="mt-4 text-lg text-paper-3">{otaTax.statLabel}</p>
+              <p className="mt-8 leading-relaxed text-paper-3/75">
+                {otaTax.body}
+              </p>
+            </Reveal>
+          </div>
+
+          <div className="lg:col-span-7">
+            <Reveal delay={100}>
+              <div className="border-l-2 border-kokum pl-7">
+                <p className="font-[family-name:var(--font-display)] text-2xl leading-snug text-paper italic md:text-[2rem]">
+                  {otaTax.question}
+                </p>
+                <p className="mt-4 text-paper-3/80">{otaTax.answer}</p>
+              </div>
+            </Reveal>
+
+            <Reveal delay={180}>
+              <div className="mt-12 overflow-x-auto">
+                <table className="w-full min-w-[32rem] border-collapse text-left">
+                  <thead>
+                    <tr className="border-b border-paper-3/25">
+                      <th className="eyebrow pb-4 pr-6 font-normal text-paper-3/70">
+                        What we measure
+                      </th>
+                      <th className="eyebrow pb-4 pr-6 font-normal text-paper-3/70">
+                        Typical today
+                      </th>
+                      <th className="eyebrow pb-4 font-normal text-paper-3/70">
+                        Target
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {metrics.map((m) => (
+                      <tr
+                        key={m.metric}
+                        className="border-b border-paper-3/10 last:border-0"
+                      >
+                        <td className="py-4 pr-6 align-top font-medium text-paper">
+                          {m.metric}
+                        </td>
+                        <td className="py-4 pr-6 align-top text-paper-3/60 tabular-nums">
+                          {m.today}
+                        </td>
+                        <td className="py-4 align-top font-medium text-kokum-2 tabular-nums">
+                          {m.target}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </Reveal>
+
+            <Reveal delay={260}>
+              <Button
+                href="/direct-revenue"
+                variant="onDarkSolid"
+                size="lg"
+                className="mt-10"
+              >
+                The whole argument
+                <Arrow />
+              </Button>
+            </Reveal>
+          </div>
+        </div>
+      </Section>
+
+      {/* ─────────────────── Why we are not an SEO agency ─────────────────── */}
+      <Section tone="paper-2">
+        <div className="mx-auto max-w-3xl text-center">
+          <Reveal>
+            <span className="eyebrow">Sequencing</span>
+            <h2 className="mt-6 text-[2rem] leading-[1.1] sm:text-4xl lg:text-5xl">
+              {sequencing.headline}
+            </h2>
+            <p className="mt-6 text-lg leading-relaxed text-ink-2">
+              {sequencing.body}
+            </p>
+          </Reveal>
+        </div>
+
+        <Reveal delay={140}>
+          <ol className="mx-auto mt-12 grid max-w-5xl gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {pillars.map((p) => (
+              <li
+                key={p.slug}
+                className="rounded-2xl border border-line bg-paper p-7"
+              >
+                <span className="font-[family-name:var(--font-display)] text-sm text-kokum tabular-nums">
+                  {p.number}
+                </span>
+                <h3 className="mt-3 font-[family-name:var(--font-display)] text-lg text-ink">
+                  {p.name}
+                </h3>
+              </li>
+            ))}
+          </ol>
+        </Reveal>
+
+        <Reveal delay={220}>
+          <div className="mx-auto mt-12 max-w-3xl rounded-2xl border border-kokum/25 bg-kokum-3/60 p-8 text-center md:p-10">
+            <p className="font-[family-name:var(--font-display)] text-xl leading-relaxed text-ink italic md:text-2xl">
+              {sequencing.contrast}
+            </p>
+          </div>
+        </Reveal>
+      </Section>
+
       {/* ───────────────────────── The platform ───────────────────────────── */}
       <Section>
         <Reveal>
           <SectionHeading
             eyebrow="The platform"
-            title="Seven jobs. One system. No tabs."
-            sub="Each of these is a product a company could sell you on its own. We built them to work as one, because that is the only way the compounding actually happens."
+            title="The machinery that runs it."
+            sub="The practice above is the argument. These seven modules are how it actually gets executed — built to work as one system, because that is the only way the compounding happens."
           />
         </Reveal>
 
@@ -353,8 +479,8 @@ export default function Home() {
             <Reveal>
               <SectionHeading
                 eyebrow="Who builds it"
-                title="Two engineers, not ten account managers."
-                sub="We are small on purpose. It means the person who answers your message is the person who can fix the thing you are messaging about."
+                title="Two engineers who also run a property."
+                sub="We are small on purpose. The person who answers your message is the person who can fix the thing you are messaging about — and who has spent their own evenings answering guest enquiries."
               />
               <Button href="/about" variant="ghost" className="mt-7">
                 More about us

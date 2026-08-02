@@ -37,15 +37,16 @@ export function whatsappUrl(message: string = contact.whatsappMessage) {
 
 export const site = {
   name: "Kokum Labs",
-  tagline: "AI-native operations for hospitality",
+  tagline: "Direct revenue practice for independent properties",
   /** Canonical origin — drives the sitemap, robots.txt, canonical URLs and
    *  OG/Twitter share cards. Must match the domain the site is served from. */
   url: "https://agency.kokumlabs.in",
   description:
-    "An AI-native platform for hotels, resorts, homestays and mid-term rentals. Website, social, guest enquiries, WhatsApp, OTA listings, bookings and loyalty — run from one place.",
+    "We reduce independent properties' dependency on OTAs and Airbnb: own your guest data, capture the branded demand you already create, and fill the trough. Measured in direct booking share, not impressions.",
 } as const;
 
 export const nav = [
+  { label: "Direct Revenue", href: "/direct-revenue" },
   { label: "Platform", href: "/platform" },
   { label: "Mid-Term Stays", href: "/mid-term-stays" },
   { label: "About", href: "/about" },
@@ -95,6 +96,182 @@ export const photos: {
     bookings: null,
     loyalty: null,
   },
+};
+
+/* ══════════════════════════ THE DIRECT REVENUE PRACTICE ═══════════════════════
+ *
+ * This is the argument, and it is what separates us from an SEO or social
+ * agency. They sell reach and report impressions. We sell direct revenue and
+ * report the share of bookings that no longer pay commission.
+ *
+ * Source: "Build a Brand, Not a Listing".
+ * ═════════════════════════════════════════════════════════════════════════════ */
+
+export const positioning = {
+  eyebrow: "Direct revenue practice",
+  headline: "Build a brand, not a listing.",
+  sub: "How independent properties reduce dependency on OTAs and Airbnb — and start owning their guests.",
+};
+
+/** The economic argument the whole practice rests on. */
+export const otaTax = {
+  stat: "22–28%",
+  statLabel: "the all-in cost of an OTA booking",
+  body: "Commission, preferred-programme uplift, payment processing and campaign spend. On a first-time guest, that is fair acquisition cost. On a repeat guest, it is a tax you chose to pay.",
+  question: "What percentage of your repeat guests still book through an OTA?",
+  answer:
+    "Most owners have never calculated it. The answer is usually the size of the problem.",
+};
+
+export type Lever = { title: string; body: string };
+
+export type Pillar = {
+  slug: string;
+  number: string;
+  name: string;
+  headline: string;
+  sub: string;
+  levers: Lever[];
+};
+
+export const pillars: Pillar[] = [
+  {
+    slug: "own-the-guest",
+    number: "01",
+    name: "Own the guest",
+    headline: "You cannot market to people whose names you do not have.",
+    sub: "Every lever further down this page depends on closing this gap first. Loyalty has nobody to enrol and referral has nobody to ask until it is closed.",
+    levers: [
+      {
+        title: "Your guest database",
+        body: "A property doing 3,000 room-nights a year has hosted four to six thousand people, and can usually reach fewer than two hundred of them. OTAs withhold contact data by design — masked emails, platform-only messaging. We close that gap.",
+      },
+      {
+        title: "Digital pre-arrival check-in",
+        body: "The highest-leverage single change available to most properties. Sold to the guest as skipping the paperwork at the front desk, it captures every adult's details, consent, preferences and occasion before they arrive — turning a compliance chore you already perform into a marketing database. Guests complete it because it is genuinely convenient, and your front desk gains the context to personalise the stay.",
+      },
+      {
+        title: "WhatsApp as the primary channel",
+        body: "In India it outperforms email several times over on open and response rates. Booking support, pre-arrival upsells, post-stay follow-up and re-engagement all run through one thread the guest actually reads.",
+      },
+    ],
+  },
+  {
+    slug: "capture-demand",
+    number: "02",
+    name: "Capture the demand you already created",
+    headline: "You are paying commission on guests who were looking for you by name.",
+    sub: "Nobody books on first touch. They discover you on an OTA or Instagram, then Google your name to check you are real — and that search currently converts on Booking.com.",
+    levers: [
+      {
+        title: "Branded search",
+        body: "The OTAs outrank you on your own name. They call this the billboard effect and cite it as proof of their value; it is in fact the strongest argument against them. That search is demand you created and should be capturing.",
+      },
+      {
+        title: "Google Business Profile and free booking links",
+        body: "Google shows booking links in the hotel panel at no cost — but only if your booking engine is connected to it. If it is not, only OTAs appear, with no fallback. This is the biggest structural fix available and it costs close to nothing.",
+      },
+      {
+        title: "A booking engine that does not lose people",
+        body: "Mobile-first, three clicks, UPI and cards, no forced signup, embedded rather than redirecting to a third-party domain. A meaningful share of what looks like OTA dependency is simply a direct funnel that drops people at the last step.",
+      },
+      {
+        title: "Rate strategy and the book-direct stack",
+        body: "Never win on price — it breaches parity, trains guests to price-shop and erodes your rate permanently. Win on certainty, flexibility, inclusions and recognition: guaranteed best room, better cancellation terms, breakfast, late checkout, F&B credit. Worth eight to fifteen per cent in perceived value at near-zero real cost, and entirely outside what parity clauses actually bind.",
+      },
+      {
+        title: "Direct-only inventory",
+        body: "Parity governs the price of a room type on a date; it does not oblige you to distribute every room. Keeping the best villa or suite off the OTAs is legitimate, and it gives guests a reason to book direct that no discount can match.",
+      },
+    ],
+  },
+  {
+    slug: "retain-multiply",
+    number: "03",
+    name: "Retain and multiply",
+    headline: "The guest who already loved it here is the cheapest booking you will ever make.",
+    sub: "Retention and referral are where the guest database finally pays for itself.",
+    levers: [
+      {
+        title: "Loyalty as stay credit, not points",
+        body: "Points are opaque at independent scale and nobody trusts the conversion. Credit — earn a percentage back, spend it on your next stay, expires in twelve months — is understood instantly and forces a return visit. Member rates shown only to logged-in guests are the one legitimate route to pricing below the OTA without breaching your contracts.",
+      },
+      {
+        title: "Referral, asked at the right moment",
+        body: "Travel referral happens anyway; “where did you stay?” gets asked after every good trip. The programme's only job is making sure there is a link to send when it does. Two-sided reward, triggered on checkout day and immediately after a five-star review, paid out on the friend's completed stay.",
+      },
+      {
+        title: "Review architecture",
+        body: "Route post-stay review requests to Google, not the OTA. Same effort, but an OTA review strengthens their listing while a Google review strengthens an asset you own — and lifts conversion on your own brand search.",
+      },
+      {
+        title: "Gift cards and prepaid credit",
+        body: "Cash upfront, a locked-in future guest, and a new person introduced to you by someone who already loves the place.",
+      },
+    ],
+  },
+  {
+    slug: "fill-the-trough",
+    number: "04",
+    name: "Fill the trough",
+    headline: "You do not have an occupancy problem. You have a trough problem.",
+    sub: "Full on weekends, empty on a Tuesday in July. The fix is demand that is genuinely date-flexible — and demand you create rather than capture.",
+    levers: [
+      {
+        title: "Community and young travel brand tie-ups",
+        body: "Run clubs, surf schools, supper clubs, nomad communities and curated trip brands are the only demand source that is genuinely date-flexible, because the group is the reason for the trip. A thirty-person weekend is not one booking; it is thirty people entering your database.",
+      },
+      {
+        title: "B2B, offsites and groups",
+        body: "Highest ticket, zero commission, mid-week, booked weeks ahead with a deposit. Group ADR is lower but F&B attach is several times leisure, so total revenue per guest is usually higher — the number most owners get wrong when they turn group business away. It requires GST invoicing, credit terms and wifi that holds thirty people; those three block more deals than price ever does.",
+      },
+      {
+        title: "Social media as your top of funnel",
+        body: "Instagram and short-form video have replaced the OTA as the discovery layer for travellers under thirty-five. People find a place in a reel, save it, Google the name, then book. It is the only lever that creates demand rather than capturing it. Destination content reaches people who have not chosen anywhere yet; property content only converts people who already know you — so the mix matters more than the volume.",
+      },
+      {
+        title: "Turning reach into bookings",
+        body: "Most property accounts collect views and dead-end: the bio link points to Airbnb, or to nine options. One link straight to direct booking, comment-triggered DMs that capture a contact rather than just a click, and every conversation routed into WhatsApp and the guest database. Social should feed your CRM continuously, not produce screenshots.",
+      },
+      {
+        title: "Creator partnerships",
+        body: "Micro creators — ten to a hundred thousand followers — outperform large accounts on both trust and cost. Worth doing only with a contract: specified deliverables, a posting window, unique tracking codes, and perpetual usage rights so you can reuse the footage in your ads and on your site. Without that clause you have bought a free stay for a story that disappears in a day.",
+      },
+      {
+        title: "Experiences, F&B and day passes",
+        body: "Bring locals and non-guests into the brand's orbit. It builds an audience that exists independent of your room inventory, and gives people a reason to know you before they ever need a room.",
+      },
+      {
+        title: "Adjacent brand collaborations",
+        body: "Coffee roasters, outdoor gear, apparel, EV, luggage. Co-branded stays and giveaways put you in front of an audience someone else spent years building.",
+      },
+    ],
+  },
+];
+
+/** The scoreboard. This is the part an SEO vendor cannot show you. */
+export const metrics = [
+  { metric: "Direct booking share", today: "10–20%", target: "35–50%" },
+  { metric: "Contactable past guests", today: "Under 5%", target: "70%+" },
+  { metric: "Repeat guest rate", today: "Under 5%", target: "15–25%" },
+  {
+    metric: "Cost per direct booking",
+    today: "Unmeasured",
+    target: "Well under OTA commission",
+  },
+  {
+    metric: "Trough occupancy — mid-week, off-season",
+    today: "Unmeasured",
+    target: "The real scoreboard",
+  },
+];
+
+/** Why the order matters — and where most agencies get it wrong. */
+export const sequencing = {
+  headline: "Build from the bottom, sell from the top.",
+  body: "Data capture first, then search and conversion, then retention, then demand generation.",
+  contrast:
+    "Social is the strongest demand engine you have — but most agencies switch it on first, pouring reach into a funnel that leaks at every stage below it.",
 };
 
 /* ───────────────────────────── The seven modules ─────────────────────────── */
@@ -322,6 +499,10 @@ export const howItWorks = [
 /* ─────────────────────────────────── FAQ ─────────────────────────────────── */
 
 export const faqs = [
+  {
+    q: "Do you actually use this yourselves?",
+    a: "Yes. We run a homestay of our own, and it was the first property on the platform. Every part of this was built because we needed it — the late-night enquiries, the listings drifting out of sync, the empty shoulder months. Nothing reaches your property that we have not already lived with on ours.",
+  },
   {
     q: "Are you an agency or a software product?",
     a: "Both, deliberately. You get the platform, and you get us running it. Most owners do not want another dashboard to learn — they want the work done. We built the software so that two engineers can do the job a ten-person agency would charge you for.",

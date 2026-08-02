@@ -46,11 +46,11 @@ export default function AboutPage() {
         eyebrow="About us"
         title={
           <>
-            Two engineers who got tired of watching good properties{" "}
-            <span className="text-kokum italic">lose to bad software</span>.
+            We built this for{" "}
+            <span className="text-kokum italic">our own homestay</span> first.
           </>
         }
-        sub="Kokum Labs is small, deliberately. We built the platform so that two people can do the work a ten-person agency would bill you for — and so that the person you talk to is the person who can fix it."
+        sub="Kokum Labs is two engineers — one from Amazon, one from Billdesk — who also run a property of their own. Everything on this site exists because we needed it before anyone else did."
       />
 
       {/* ───────────────────────────── The story ──────────────────────────── */}
@@ -61,11 +61,18 @@ export default function AboutPage() {
               <p className="eyebrow">Why we built this</p>
               <div className="mt-7 space-y-6 text-lg leading-relaxed text-ink-2">
                 <p>
-                  Independent properties are not losing to better hotels. They
-                  are losing to better distribution. The place down the road with
-                  worse rooms and a worse view takes more bookings because it
-                  replies in four minutes, its listing is current on six
-                  channels, and it asks last year&apos;s guests to come back.
+                  We did not set out to build a product. We set out to keep our
+                  own homestay full — and discovered that most of that work has
+                  nothing to do with hospitality.
+                </p>
+                <p>
+                  The enquiry that arrives at eleven at night and is cold by
+                  morning. The rate changed on one channel and forgotten on
+                  another. The eight weeks a year when the rooms sit empty and
+                  the fixed costs do not. The guest who left a five-star review
+                  and never heard from us again. Everything described on the home
+                  page under <em>the problem</em> is written from experience, not
+                  from a survey.
                 </p>
                 <p>
                   None of that is hospitality work. It is software work — and it
@@ -77,6 +84,13 @@ export default function AboutPage() {
                   infrastructure at{" "}
                   <strong className="font-semibold text-ink">Billdesk</strong>,
                   where money moving correctly, every time, is the entire job.
+                </p>
+                <p>
+                  So we built what we needed and ran it on our own property
+                  first. It answers our guests, keeps our listings straight, and
+                  fills months that used to sit empty. That is the only reason we
+                  are comfortable offering it to yours — we are not selling you
+                  something we would not run ourselves.
                 </p>
                 <p>
                   The tools sold to independent properties today are either
