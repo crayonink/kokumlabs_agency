@@ -2,13 +2,13 @@ import Link from "next/link";
 import {
   founders,
   howItWorks,
+  manifesto,
   metrics,
   midTerm,
   modules,
   otaTax,
   photos,
   pillars,
-  positioning,
   segments,
   sequencing,
   whatsappUrl,
@@ -44,23 +44,24 @@ export default function Home() {
           <div className="grid items-center gap-14 lg:grid-cols-12 lg:gap-16">
             <div className="lg:col-span-7">
               <Reveal>
-                <p className="eyebrow">{positioning.eyebrow}</p>
+                <p className="eyebrow">For independent hosts</p>
               </Reveal>
 
               <Reveal delay={80}>
-                <h1 className="mt-6 text-[2.75rem] leading-[1.03] sm:text-6xl lg:text-[4.25rem]">
-                  Build a brand,
+                <h1 className="mt-6 text-[2.5rem] leading-[1.05] sm:text-[3.25rem] lg:text-[3.75rem]">
+                  Airbnbs have stopped
                   <br />
-                  <span className="text-kokum italic">not a listing</span>.
+                  feeling like{" "}
+                  <span className="text-kokum italic">Airbnbs</span>.
                 </h1>
               </Reveal>
 
               <Reveal delay={160}>
                 <p className="mt-8 max-w-xl text-lg leading-relaxed text-ink-2 md:text-xl">
-                  An OTA booking costs you 22–28% all in — including from guests
-                  who have already stayed with you once. We reduce that
-                  dependency: own your guest data, capture the branded demand you
-                  are already creating, and fill the months that sit empty.
+                  Staying at someone&rsquo;s place became staying at a listing —
+                  managed, templated, and somehow dearer than a hotel with actual
+                  staff. We help independent properties be places again: we take
+                  the admin off you, never the personality out of you.
                 </p>
               </Reveal>
 
@@ -129,21 +130,120 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ─────────────────────────── The diagnosis ────────────────────────── */}
+      <Section tone="paper-2">
+        <div className="grid gap-14 lg:grid-cols-12 lg:gap-20">
+          <div className="lg:col-span-5">
+            <Reveal>
+              <SectionHeading
+                eyebrow={manifesto.eyebrow}
+                title={
+                  <>
+                    Somewhere it turned into{" "}
+                    <span className="text-kokum italic">property management</span>
+                    .
+                  </>
+                }
+                sub={manifesto.sub}
+              />
+            </Reveal>
+          </div>
+
+          <div className="lg:col-span-7">
+            <ul>
+              {manifesto.diagnosis.map((row, i) => (
+                <Reveal as="li" key={row.t} delay={i * 60}>
+                  <div className="flex gap-6 border-b border-line-2/60 py-7">
+                    <span className="font-[family-name:var(--font-display)] text-2xl text-kokum/40 tabular-nums">
+                      0{i + 1}
+                    </span>
+                    <div>
+                      <h3 className="text-xl md:text-[1.375rem]">{row.t}</h3>
+                      <p className="mt-2 leading-relaxed text-ink-2">{row.d}</p>
+                    </div>
+                  </div>
+                </Reveal>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </Section>
+
+      {/* ──────────────────────────── The line ────────────────────────────── */}
+      <Section tone="ink">
+        <div className="mx-auto max-w-3xl text-center">
+          <Reveal>
+            <p className="eyebrow mb-5 text-kokum-2">
+              {manifesto.boundary.eyebrow}
+            </p>
+            <h2 className="text-[2.125rem] leading-[1.08] text-paper sm:text-5xl lg:text-[3.25rem]">
+              We automate the admin.{" "}
+              <span className="text-kokum-2 italic">Never the host.</span>
+            </h2>
+            <p className="mt-7 text-lg leading-relaxed text-paper-3/75">
+              {manifesto.boundary.body}
+            </p>
+          </Reveal>
+        </div>
+
+        <div className="mx-auto mt-16 grid max-w-5xl gap-px overflow-hidden rounded-2xl bg-paper-3/15 md:grid-cols-2">
+          <Reveal delay={120}>
+            <div className="h-full bg-ink p-8 md:p-10">
+              <p className="eyebrow mb-6 text-paper-3/70">What we take off you</p>
+              <ul className="space-y-4">
+                {manifesto.boundary.weTake.map((t) => (
+                  <li key={t} className="flex gap-3.5">
+                    <span
+                      aria-hidden="true"
+                      className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-paper-3/50"
+                    />
+                    <span className="leading-relaxed text-paper-3/80">{t}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </Reveal>
+
+          <Reveal delay={200}>
+            <div className="h-full bg-ink p-8 md:p-10">
+              <p className="eyebrow mb-6 text-kokum-2">What stays yours</p>
+              <ul className="space-y-4">
+                {manifesto.boundary.youKeep.map((t) => (
+                  <li key={t} className="flex gap-3.5">
+                    <span
+                      aria-hidden="true"
+                      className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-kokum"
+                    />
+                    <span className="leading-relaxed text-paper">{t}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </Reveal>
+        </div>
+
+        <Reveal delay={280}>
+          <p className="mx-auto mt-14 max-w-3xl text-center font-[family-name:var(--font-display)] text-2xl leading-snug text-paper italic md:text-[2rem]">
+            {manifesto.boundary.line}
+          </p>
+        </Reveal>
+      </Section>
+
       {/* ───────────────────────── The problem ────────────────────────────── */}
       <Section tone="paper-2">
         <div className="grid gap-14 lg:grid-cols-12 lg:gap-20">
           <div className="lg:col-span-5">
             <Reveal>
               <SectionHeading
-                eyebrow="The problem"
+                eyebrow="Why it happens"
                 title={
                   <>
-                    You did not get into hospitality to manage{" "}
+                    Nobody got into this to manage{" "}
                     <span className="text-kokum italic">seven browser tabs</span>
                     .
                   </>
                 }
-                sub="Most independent properties run across a booking engine, a channel manager, two inboxes, three social apps and a personal WhatsApp — none of which talk to each other. We know, because we ran ours that way for years."
+                sub="A booking engine, a channel manager, two inboxes, three social apps and your personal WhatsApp. None of them talk to each other. This is what wears hosts down until handing it to a management company starts to sound reasonable. We ran ours this way for years."
               />
             </Reveal>
           </div>
@@ -190,7 +290,7 @@ export default function Home() {
         <div className="grid gap-14 lg:grid-cols-12 lg:gap-20">
           <div className="lg:col-span-5">
             <Reveal>
-              <p className="eyebrow mb-5 text-kokum-2">The economics</p>
+              <p className="eyebrow mb-5 text-kokum-2">What it costs you</p>
               <p className="font-[family-name:var(--font-display)] text-[4rem] leading-none text-kokum-2 tabular-nums sm:text-[5rem]">
                 {otaTax.stat}
               </p>
@@ -268,7 +368,7 @@ export default function Home() {
       <Section tone="paper-2">
         <div className="mx-auto max-w-3xl text-center">
           <Reveal>
-            <span className="eyebrow">Sequencing</span>
+            <span className="eyebrow">What order to do it in</span>
             <h2 className="mt-6 text-[2rem] leading-[1.1] sm:text-4xl lg:text-5xl">
               {sequencing.headline}
             </h2>
@@ -310,8 +410,8 @@ export default function Home() {
         <Reveal>
           <SectionHeading
             eyebrow="The platform"
-            title="The machinery that runs it."
-            sub="The practice above is the argument. These seven modules are how it actually gets executed — built to work as one system, because that is the only way the compounding happens."
+            title="The bits that actually do the work."
+            sub="Everything above is the argument. This is how it gets done. Seven things, built to work as one, because separately they're just seven more tabs."
           />
         </Reveal>
 

@@ -15,14 +15,14 @@ export default function DirectRevenuePage() {
   return (
     <>
       <PageHero
-        eyebrow="Direct revenue practice"
+        eyebrow="How we get you off the OTAs"
         title={
           <>
-            Build a brand,{" "}
+            Be a place,{" "}
             <span className="text-kokum italic">not a listing</span>.
           </>
         }
-        sub="How independent properties reduce dependency on OTAs and Airbnb — and start owning their guests."
+        sub="The whole argument, in the order we'd actually do it. Nothing held back for the sales call."
       >
         <nav className="flex flex-wrap gap-2">
           {pillars.map((p) => (
@@ -128,8 +128,8 @@ export default function DirectRevenuePage() {
             <Reveal>
               <SectionHeading
                 eyebrow="What we measure"
-                title="A scoreboard your agency cannot show you."
-                sub="Impressions, reach and keyword rankings are not revenue. These five numbers are, and most properties have never had them put in front of them."
+                title="Numbers your agency can't show you."
+                sub="Impressions and rankings aren't money. These five are. Most owners have never had anyone put them on a page."
               />
             </Reveal>
           </div>
@@ -173,7 +173,7 @@ export default function DirectRevenuePage() {
       <Section tone="paper-2">
         <div className="mx-auto max-w-3xl text-center">
           <Reveal>
-            <span className="eyebrow">Sequencing</span>
+            <span className="eyebrow">What order to do it in</span>
             <h2 className="mt-6 text-[2rem] leading-[1.12] sm:text-4xl lg:text-5xl">
               {sequencing.headline}
             </h2>
@@ -212,8 +212,8 @@ export default function DirectRevenuePage() {
 
       <CTASection
         eyebrow="Start with the number"
-        title="We will calculate your OTA tax before you decide anything."
-        sub="On the demo we look at your live listings, your booking funnel and where your repeat guests actually book — and tell you what dependency is costing you. You get the findings whether or not you sign up."
+        title="We'll work out what the OTAs are costing you. Then you decide."
+        sub="On the call we go through your listings, your booking flow, and where your repeat guests are actually booking. You get the numbers whether or not you sign up."
       />
     </>
   );

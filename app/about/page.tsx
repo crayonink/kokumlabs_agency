@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { founders, photos } from "@/lib/site";
+import { founders, manifesto, photos } from "@/lib/site";
 import CTASection from "@/components/CTASection";
 import PageHero from "@/components/PageHero";
 import PhotoSlot from "@/components/PhotoSlot";
@@ -50,7 +50,7 @@ export default function AboutPage() {
             <span className="text-kokum italic">our own homestay</span> first.
           </>
         }
-        sub="Kokum Labs is two engineers — one from Amazon, one from Billdesk — who also run a property of their own. Everything on this site exists because we needed it before anyone else did."
+        sub="Two engineers — one from Amazon, one from Billdesk — who also run a place of their own. Everything here exists because we needed it before anyone else did."
       />
 
       {/* ───────────────────────────── The story ──────────────────────────── */}
@@ -61,47 +61,43 @@ export default function AboutPage() {
               <p className="eyebrow">Why we built this</p>
               <div className="mt-7 space-y-6 text-lg leading-relaxed text-ink-2">
                 <p>
-                  We did not set out to build a product. We set out to keep our
-                  own homestay full — and discovered that most of that work has
-                  nothing to do with hospitality.
+                  We didn&rsquo;t set out to build a product. We were trying to
+                  keep our own homestay full, and it turned out most of that work
+                  has nothing to do with hospitality.
                 </p>
                 <p>
-                  The enquiry that arrives at eleven at night and is cold by
-                  morning. The rate changed on one channel and forgotten on
-                  another. The eight weeks a year when the rooms sit empty and
-                  the fixed costs do not. The guest who left a five-star review
-                  and never heard from us again. Everything described on the home
-                  page under <em>the problem</em> is written from experience, not
-                  from a survey.
+                  The enquiry that comes in at 11pm and is dead by morning. The
+                  rate you changed on one channel and forgot on another. The
+                  eight weeks a year when nobody comes and the bills don&rsquo;t
+                  care. The guest who left five stars and never heard from you
+                  again. All of that is stuff that happened to us.
                 </p>
                 <p>
-                  None of that is hospitality work. It is software work — and it
-                  is the kind of software work we have spent our careers doing.
-                  One of us spent years at{" "}
-                  <strong className="font-semibold text-ink">Amazon</strong>{" "}
-                  building systems where latency is measured in milliseconds
-                  because milliseconds cost money. The other built payment
-                  infrastructure at{" "}
+                  None of it is hospitality. It&rsquo;s software. And software is
+                  what we do — one of us at{" "}
+                  <strong className="font-semibold text-ink">Amazon</strong>,
+                  where things have to stay up and stay fast because slow costs
+                  money, the other building payment systems at{" "}
                   <strong className="font-semibold text-ink">Billdesk</strong>,
-                  where money moving correctly, every time, is the entire job.
+                  where money moving correctly every single time is the entire
+                  job.
                 </p>
                 <p>
-                  So we built what we needed and ran it on our own property
-                  first. It answers our guests, keeps our listings straight, and
-                  fills months that used to sit empty. That is the only reason we
-                  are comfortable offering it to yours — we are not selling you
-                  something we would not run ourselves.
+                  So we built what we needed and ran it on our own place first.
+                  It answers our guests, keeps our listings straight, and fills
+                  months that used to sit empty. That&rsquo;s the only reason
+                  we&rsquo;re comfortable selling it to you. We&rsquo;re not
+                  going to sell you something we wouldn&rsquo;t run ourselves.
                 </p>
                 <p>
-                  The tools sold to independent properties today are either
-                  enterprise software scaled down badly, or agencies charging a
-                  retainer to do things a machine should be doing. We thought
-                  there was a third option: build the machine, and run it for
-                  you.
+                  What&rsquo;s out there is either enterprise software cut down
+                  badly, or an agency charging a retainer to do things a computer
+                  should be doing. We thought there was a third option. Build the
+                  machine, and run it for you.
                 </p>
                 <p>
-                  Kokum is the fruit of the Konkan coast — sharp, unmistakable,
-                  and quietly essential to everything it goes into. That felt
+                  Kokum is the fruit you get on the Konkan coast. Sharp,
+                  unmistakable, quietly essential to whatever it goes into. Felt
                   about right.
                 </p>
               </div>
@@ -120,6 +116,27 @@ export default function AboutPage() {
             </Reveal>
           </div>
         </div>
+      </Section>
+
+      {/* ─────────────────────── What we hold ourselves to ─────────────────── */}
+      <Section tone="ink">
+        <figure className="mx-auto max-w-4xl text-center">
+          <Reveal>
+            <blockquote className="font-[family-name:var(--font-display)] text-[1.75rem] leading-[1.3] text-paper italic sm:text-4xl lg:text-[2.75rem]">
+              &ldquo;{manifesto.quote.text}&rdquo;
+            </blockquote>
+          </Reveal>
+          <Reveal delay={120}>
+            <figcaption className="mt-9">
+              <span className="block font-medium text-paper">
+                {manifesto.quote.attribution}
+              </span>
+              <span className="mt-1 block text-paper-3/70">
+                {manifesto.quote.context}
+              </span>
+            </figcaption>
+          </Reveal>
+        </figure>
       </Section>
 
       {/* ──────────────────────────── Founders ───────────────────────────── */}

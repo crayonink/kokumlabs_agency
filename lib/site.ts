@@ -37,12 +37,12 @@ export function whatsappUrl(message: string = contact.whatsappMessage) {
 
 export const site = {
   name: "Kokum Labs",
-  tagline: "Direct revenue practice for independent properties",
+  tagline: "Airbnbs have stopped feeling like Airbnbs",
   /** Canonical origin — drives the sitemap, robots.txt, canonical URLs and
    *  OG/Twitter share cards. Must match the domain the site is served from. */
   url: "https://agency.kokumlabs.in",
   description:
-    "We reduce independent properties' dependency on OTAs and Airbnb: own your guest data, capture the branded demand you already create, and fill the trough. Measured in direct booking share, not impressions.",
+    "Staying at someone's place became staying at a listing. We help independent hotels, homestays and rentals be places again. We take the admin off the host, never the personality out of the stay, and get you off the OTAs that pushed everyone here in the first place.",
 } as const;
 
 export const nav = [
@@ -113,14 +113,87 @@ export const positioning = {
   sub: "How independent properties reduce dependency on OTAs and Airbnb — and start owning their guests.",
 };
 
+/* ══════════════════════════════ THE CORE PRINCIPLE ════════════════════════════
+ *
+ * Everything on this site hangs off one observation: somewhere in the last
+ * seven years, staying at someone's place became staying at a listing.
+ *
+ * Note the trap this creates for us, and the reason `boundary` below exists.
+ * The complaint is that hosting has become over-managed and impersonal — and
+ * we sell automation. If we do not draw the line explicitly and in public, a
+ * reader concludes we are selling the disease as the cure. The line is: we
+ * automate the admin, never the host.
+ * ═════════════════════════════════════════════════════════════════════════════ */
+
+export const manifesto = {
+  eyebrow: "What we think",
+  principle: "Airbnbs have stopped feeling like Airbnbs.",
+  sub: "Is it just us, or has the quality dropped hard in the last 5–7 years? It's all managed now. The messages feel too formal. Rooms are over done up, sometimes built only for the purpose of bnbing. We get it, we all need the money. But this isn't why Airbnbs should exist.",
+
+  /** What went wrong. Her words, not a deck. */
+  diagnosis: [
+    {
+      t: "It's all managed now",
+      d: "Two messages in and you know you're talking to a management company, not the person whose house it is. That was the one thing the place had that a hotel didn't.",
+    },
+    {
+      t: "The messages feel too formal",
+      d: "Because they're templates. Correct, fast, no person in them. Nobody remembers a well-written check-in instruction. They remember being told where to actually eat.",
+    },
+    {
+      t: "Rooms are over done up",
+      d: "Built for the listing, not the stay. Arch mirror, cane everything, a neon sign nobody asked for. And nowhere to put your suitcase.",
+    },
+    {
+      t: "More expensive than a hotel",
+      d: "Why? You don't have the staff a hotel has. And when they're not expensive, they're pretty much not worth it. The guest loses both ways. This is India specifically — US folks keep yapping about how bad theirs are. Ours are worse.",
+    },
+    {
+      t: "The whole idea got lost",
+      d: "Get to know more folks, share the place you live in, earn cash while doing it. That was it. It was never meant to be your career or your main income.",
+    },
+  ],
+
+  /** The line we won't cross. The most important section on the site. */
+  boundary: {
+    eyebrow: "Where we draw the line",
+    headline: "We automate the admin. Never the host.",
+    body: "Hosts didn't stop caring. The job just filled up with work that has nothing to do with hospitality — rates, channels, invoices, paperwork, chasing reviews. At some point the only way to cope is to hand the whole thing to someone who runs it like a listing. So we take that work instead. That's the whole idea.",
+    weTake: [
+      "Rates and availability, everywhere at once",
+      "The 11pm enquiry that just needs a yes or no on dates",
+      "Invoices, GST, deposits, long-stay paperwork",
+      "Listing content, current on every channel",
+      "Review requests, pointed at Google instead of the OTA",
+      "The numbers that tell you what's actually working",
+    ],
+    youKeep: [
+      "The welcome message, in your words",
+      "Where you send people for dinner",
+      "Who you say yes to",
+      "How your rooms actually look",
+      "The rate you think is fair",
+      "The relationship. All of it.",
+    ],
+    line: "If a guest can't tell whether they're talking to you or to software, we've built the wrong thing.",
+  },
+
+  /** From Rupanjana's own post. In her words, which is why it works. */
+  quote: {
+    text: "If anybody stayed with us and felt we are not value for money at Mitra Stay, I would consider myself a failed host. The whole concept is being around value for money, reliable, getting to meet new people.",
+    attribution: "Rupanjana Mitra",
+    context: "Co-founder, and host at Mitra Stay",
+  },
+};
+
 /** The economic argument the whole practice rests on. */
 export const otaTax = {
   stat: "22–28%",
-  statLabel: "the all-in cost of an OTA booking",
-  body: "Commission, preferred-programme uplift, payment processing and campaign spend. On a first-time guest, that is fair acquisition cost. On a repeat guest, it is a tax you chose to pay.",
-  question: "What percentage of your repeat guests still book through an OTA?",
+  statLabel: "what an OTA booking actually costs you",
+  body: "Commission, preferred-programme uplift, payment processing, campaign spend. On someone who's never heard of you, fine — that's what finding a guest costs. On someone who already stayed with you and liked it? You're just paying rent on your own guest.",
+  question: "How many of your repeat guests still book through an OTA?",
   answer:
-    "Most owners have never calculated it. The answer is usually the size of the problem.",
+    "Most owners have never worked it out. Whatever the number is, that's the size of the problem.",
 };
 
 export type Lever = { title: string; body: string };
@@ -139,74 +212,78 @@ export const pillars: Pillar[] = [
     slug: "own-the-guest",
     number: "01",
     name: "Own the guest",
-    headline: "You cannot market to people whose names you do not have.",
-    sub: "Every lever further down this page depends on closing this gap first. Loyalty has nobody to enrol and referral has nobody to ask until it is closed.",
+    headline: "You can't message people whose names you don't have.",
+    sub: "Everything below this depends on fixing it first. Loyalty has nobody to sign up and referral has nobody to ask until you can actually reach your past guests.",
     levers: [
       {
-        title: "Your guest database",
-        body: "A property doing 3,000 room-nights a year has hosted four to six thousand people, and can usually reach fewer than two hundred of them. OTAs withhold contact data by design — masked emails, platform-only messaging. We close that gap.",
+        title: "Your guest list",
+        body: "Do 3,000 room-nights a year and you've hosted four to six thousand people. Most owners can reach fewer than two hundred of them. That's not an accident — the OTAs hide contact details on purpose. Masked emails, messaging that only works inside their app. We fix that first because nothing else works until it's fixed.",
       },
       {
-        title: "Digital pre-arrival check-in",
-        body: "The highest-leverage single change available to most properties. Sold to the guest as skipping the paperwork at the front desk, it captures every adult's details, consent, preferences and occasion before they arrive — turning a compliance chore you already perform into a marketing database. Guests complete it because it is genuinely convenient, and your front desk gains the context to personalise the stay.",
+        title: "Check-in before they arrive",
+        body: "The single biggest change most places can make. To the guest it's just skipping the paperwork at the desk, which they actually want. To you it's every adult's details, consent, preferences and what they're here for — a form you're already legally required to collect, turned into something useful. And your front desk knows it's someone's anniversary before they walk in.",
       },
       {
-        title: "WhatsApp as the primary channel",
-        body: "In India it outperforms email several times over on open and response rates. Booking support, pre-arrival upsells, post-stay follow-up and re-engagement all run through one thread the guest actually reads.",
+        title: "WhatsApp, not email",
+        body: "In India it isn't close. People open WhatsApp and ignore email. Booking questions, pre-arrival upsells, the post-stay follow-up, the nudge a year later — all in one thread they actually read.",
       },
     ],
   },
   {
     slug: "capture-demand",
     number: "02",
-    name: "Capture the demand you already created",
-    headline: "You are paying commission on guests who were looking for you by name.",
-    sub: "Nobody books on first touch. They discover you on an OTA or Instagram, then Google your name to check you are real — and that search currently converts on Booking.com.",
+    name: "Catch the demand you already made",
+    headline: "You're paying commission on people who were searching for you by name.",
+    sub: "Nobody books the first time they see you. They spot you on an OTA or Instagram, then Google your name to check you're real. Right now that search sends them to Booking.com.",
     levers: [
       {
-        title: "Branded search",
-        body: "The OTAs outrank you on your own name. They call this the billboard effect and cite it as proof of their value; it is in fact the strongest argument against them. That search is demand you created and should be capturing.",
+        title: "People Googling your name",
+        body: "The OTAs outrank you on your own property's name. They call this the billboard effect and use it to prove how much they do for you. Read it again — they're outranking you on your own name and charging you for the privilege. That search is demand you created.",
       },
       {
         title: "Google Business Profile and free booking links",
-        body: "Google shows booking links in the hotel panel at no cost — but only if your booking engine is connected to it. If it is not, only OTAs appear, with no fallback. This is the biggest structural fix available and it costs close to nothing.",
+        body: "Google will put a booking link on your profile for free. But only if your booking engine is plugged into it. If it isn't, guests see OTAs and nothing else. Biggest fix on this page and it costs almost nothing.",
       },
       {
-        title: "A booking engine that does not lose people",
-        body: "Mobile-first, three clicks, UPI and cards, no forced signup, embedded rather than redirecting to a third-party domain. A meaningful share of what looks like OTA dependency is simply a direct funnel that drops people at the last step.",
+        title: "A booking engine that doesn't lose people",
+        body: "Mobile-first, three clicks, UPI and cards, no forced signup, on your own site instead of bouncing them to some third-party domain. A lot of what looks like OTA dependency is just people giving up at the last step.",
       },
       {
-        title: "Rate strategy and the book-direct stack",
-        body: "Never win on price — it breaches parity, trains guests to price-shop and erodes your rate permanently. Win on certainty, flexibility, inclusions and recognition: guaranteed best room, better cancellation terms, breakfast, late checkout, F&B credit. Worth eight to fifteen per cent in perceived value at near-zero real cost, and entirely outside what parity clauses actually bind.",
+        title: "Never win on price",
+        body: "Discounting breaks parity, teaches guests to shop around, and drags your rate down permanently. Win on the things price can't touch: guaranteed best room, better cancellation, breakfast, late checkout, credit at the restaurant. That's worth 8–15% in what the guest feels they're getting, costs you almost nothing, and no parity clause covers any of it.",
       },
       {
-        title: "Direct-only inventory",
-        body: "Parity governs the price of a room type on a date; it does not oblige you to distribute every room. Keeping the best villa or suite off the OTAs is legitimate, and it gives guests a reason to book direct that no discount can match.",
+        title: "Keep your best room off the OTAs",
+        body: "Parity says what you charge for a room type on a date. It doesn't say you have to list every room. Hold back the best villa or the corner suite. That's a reason to book direct no discount can beat.",
+      },
+      {
+        title: "We'll tell you when you're overpriced",
+        body: "This isn't discounting. It's asking whether ₹2,000 makes sense when there's a serviced hotel room down the road at ₹1,500. If it does, we make the difference obvious. If it doesn't, the honest answer is charge less and fill more, because ₹2,000 at 40% loses to ₹1,500 at 70%. Overpricing never feels like losing — the rate card looks great and the empty Tuesdays feel like bad luck. You never see the bookings you didn't get. Most agencies push your rate up because it's an easier thing to sell you. We'd rather you were worth what you charge.",
       },
     ],
   },
   {
     slug: "retain-multiply",
     number: "03",
-    name: "Retain and multiply",
-    headline: "The guest who already loved it here is the cheapest booking you will ever make.",
-    sub: "Retention and referral are where the guest database finally pays for itself.",
+    name: "Get them back",
+    headline: "Someone who already loved it here is the cheapest booking you'll ever get.",
+    sub: "This is where having your guest list finally pays for itself.",
     levers: [
       {
-        title: "Loyalty as stay credit, not points",
-        body: "Points are opaque at independent scale and nobody trusts the conversion. Credit — earn a percentage back, spend it on your next stay, expires in twelve months — is understood instantly and forces a return visit. Member rates shown only to logged-in guests are the one legitimate route to pricing below the OTA without breaching your contracts.",
+        title: "Credit, not points",
+        body: "Nobody trusts points at this size. What's a point worth? Nobody knows, so nobody bothers. Credit is instant to understand — get 10% back, spend it next time, gone in a year. And spending it means coming back. Member rates only logged-in guests can see are also the one clean way to go below the OTA price without breaking your contracts.",
       },
       {
-        title: "Referral, asked at the right moment",
-        body: "Travel referral happens anyway; “where did you stay?” gets asked after every good trip. The programme's only job is making sure there is a link to send when it does. Two-sided reward, triggered on checkout day and immediately after a five-star review, paid out on the friend's completed stay.",
+        title: "Ask for the referral at the right moment",
+        body: "People recommend places anyway. “Where did you stay?” comes up after every good trip. All the programme has to do is make sure your guest has a link to send when it does. Reward both sides, trigger it on checkout day and right after a five-star review, pay out when the friend actually stays.",
       },
       {
-        title: "Review architecture",
-        body: "Route post-stay review requests to Google, not the OTA. Same effort, but an OTA review strengthens their listing while a Google review strengthens an asset you own — and lifts conversion on your own brand search.",
+        title: "Send reviews to Google, not the OTA",
+        body: "Same ask, same effort. An OTA review makes their listing stronger. A Google review makes yours stronger, and helps you win back the people searching your name.",
       },
       {
-        title: "Gift cards and prepaid credit",
-        body: "Cash upfront, a locked-in future guest, and a new person introduced to you by someone who already loves the place.",
+        title: "Gift cards",
+        body: "Money now, a guest booked in later, and someone new introduced to you by a person who already loves the place.",
       },
     ],
   },
@@ -214,36 +291,36 @@ export const pillars: Pillar[] = [
     slug: "fill-the-trough",
     number: "04",
     name: "Fill the trough",
-    headline: "You do not have an occupancy problem. You have a trough problem.",
-    sub: "Full on weekends, empty on a Tuesday in July. The fix is demand that is genuinely date-flexible — and demand you create rather than capture.",
+    headline: "You don't have an occupancy problem. You have a Tuesday problem.",
+    sub: "Full every weekend, empty on a Tuesday in July. What fixes that is demand that doesn't care what date it is — and demand you make rather than wait for.",
     levers: [
       {
-        title: "Community and young travel brand tie-ups",
-        body: "Run clubs, surf schools, supper clubs, nomad communities and curated trip brands are the only demand source that is genuinely date-flexible, because the group is the reason for the trip. A thirty-person weekend is not one booking; it is thirty people entering your database.",
+        title: "Run clubs, surf schools, supper clubs, nomad groups",
+        body: "These are the only guests who genuinely don't mind which weekend it is, because the group is the reason for the trip, not the place. And thirty people showing up isn't one booking. It's thirty people on your list.",
       },
       {
-        title: "B2B, offsites and groups",
-        body: "Highest ticket, zero commission, mid-week, booked weeks ahead with a deposit. Group ADR is lower but F&B attach is several times leisure, so total revenue per guest is usually higher — the number most owners get wrong when they turn group business away. It requires GST invoicing, credit terms and wifi that holds thirty people; those three block more deals than price ever does.",
+        title: "Offsites and groups",
+        body: "Biggest ticket you'll write, no commission, mid-week, booked weeks ahead with money down. Room rate is lower but they eat and drink several times what a couple does, so you usually make more per head — which is the sum most owners get wrong when they say no to groups. What actually kills these deals isn't price. It's not having GST invoicing, credit terms, and wifi that survives thirty laptops.",
       },
       {
-        title: "Social media as your top of funnel",
-        body: "Instagram and short-form video have replaced the OTA as the discovery layer for travellers under thirty-five. People find a place in a reel, save it, Google the name, then book. It is the only lever that creates demand rather than capturing it. Destination content reaches people who have not chosen anywhere yet; property content only converts people who already know you — so the mix matters more than the volume.",
+        title: "Instagram is where people find places now",
+        body: "For anyone under thirty-five it's replaced the OTA entirely. They see a reel, save it, Google the name, book. It's the only thing on this page that makes new demand instead of catching demand that already exists. Content about the place you're in reaches people who haven't picked a destination yet. Content about your property only converts people who already know you exist. Getting that mix right matters more than posting more.",
       },
       {
-        title: "Turning reach into bookings",
-        body: "Most property accounts collect views and dead-end: the bio link points to Airbnb, or to nine options. One link straight to direct booking, comment-triggered DMs that capture a contact rather than just a click, and every conversation routed into WhatsApp and the guest database. Social should feed your CRM continuously, not produce screenshots.",
+        title: "Views don't pay anyone",
+        body: "Most property accounts rack up views and go nowhere. The bio link points at Airbnb, or at nine different things. One link, straight to booking. DMs triggered by comments so you get a contact and not just a like. Every conversation ending up in WhatsApp and on your guest list. Social should be feeding your database every day, not producing screenshots for a report.",
       },
       {
-        title: "Creator partnerships",
-        body: "Micro creators — ten to a hundred thousand followers — outperform large accounts on both trust and cost. Worth doing only with a contract: specified deliverables, a posting window, unique tracking codes, and perpetual usage rights so you can reuse the footage in your ads and on your site. Without that clause you have bought a free stay for a story that disappears in a day.",
+        title: "Small creators, with a contract",
+        body: "Ten to a hundred thousand followers beats the big accounts on both trust and price. But only do it on paper: what they're posting, when, a tracking code, and the right to keep using the footage forever in your own ads and on your site. Skip that last bit and you've given away a free stay for a story that's gone in 24 hours.",
       },
       {
-        title: "Experiences, F&B and day passes",
-        body: "Bring locals and non-guests into the brand's orbit. It builds an audience that exists independent of your room inventory, and gives people a reason to know you before they ever need a room.",
+        title: "Let locals in",
+        body: "Experiences, the restaurant, day passes. Builds an audience that exists whether or not you have rooms free, and gives people a reason to know you before they ever need somewhere to sleep.",
       },
       {
-        title: "Adjacent brand collaborations",
-        body: "Coffee roasters, outdoor gear, apparel, EV, luggage. Co-branded stays and giveaways put you in front of an audience someone else spent years building.",
+        title: "Team up with brands that aren't hotels",
+        body: "Coffee roasters, outdoor gear, clothing, EV, luggage. A collab puts you in front of an audience someone else spent years building.",
       },
     ],
   },
@@ -268,10 +345,10 @@ export const metrics = [
 
 /** Why the order matters — and where most agencies get it wrong. */
 export const sequencing = {
-  headline: "Build from the bottom, sell from the top.",
-  body: "Data capture first, then search and conversion, then retention, then demand generation.",
+  headline: "The order matters more than the effort.",
+  body: "Get the guest list first. Then fix search and the booking flow. Then get people back. Then go make new demand.",
   contrast:
-    "Social is the strongest demand engine you have — but most agencies switch it on first, pouring reach into a funnel that leaks at every stage below it.",
+    "Social is the strongest thing you've got for making demand. But almost every agency switches it on first, and pours all that reach into a funnel that leaks at every single step below it.",
 };
 
 /* ───────────────────────────── The seven modules ─────────────────────────── */
@@ -289,40 +366,40 @@ export const modules: Module[] = [
   {
     slug: "website",
     name: "Website",
-    short: "A direct-booking site that earns its keep.",
+    short: "A site that takes bookings, not just compliments.",
     headline: "Your website should sell rooms, not just show them.",
-    body: "We build and run your site — fast, beautiful, and wired directly to your inventory. Every commission-free booking that comes through it is margin the OTAs never touch.",
+    body: "We build it and we run it. Fast, good-looking, wired straight to your calendar. Every booking that comes through it is money the OTAs never see.",
     points: [
-      "Direct booking engine with live availability",
-      "Built for mobile, where your guests actually are",
-      "Rewritten copy and photography direction included",
-      "We maintain it — no agency retainer, no waiting on a developer",
+      "Real booking engine, live availability",
+      "Built for phones, because that's what people use",
+      "We write the copy and tell you what to photograph",
+      "We maintain it. No retainer, no waiting on a developer",
     ],
   },
   {
     slug: "social",
-    name: "Social Media",
-    short: "Always posting. Never a chore.",
-    headline: "The account that stays alive when the season gets busy.",
-    body: "AI drafts posts in your property's voice from your own photos and events. You approve on your phone in under a minute. Nothing goes out without you.",
+    name: "Social",
+    short: "Stays alive when you're busy.",
+    headline: "The account that doesn't go quiet in season.",
+    body: "We draft posts from your own photos, in your voice. You approve on your phone in under a minute. Nothing goes out that you haven't seen.",
     points: [
-      "Content calendar generated weekly, not scrambled daily",
-      "Captions in your voice — trained on your property, not a template",
-      "Approve or edit from WhatsApp",
-      "Reels, carousels and stories scheduled across channels",
+      "A week of posts planned, not scrambled that morning",
+      "Captions that sound like you, not like a template",
+      "Approve or fix it from WhatsApp",
+      "Reels, carousels and stories, scheduled",
     ],
   },
   {
     slug: "enquiries",
-    name: "Guest Enquiries",
-    short: "Every enquiry answered in seconds.",
-    headline: "The booking usually goes to whoever replies first.",
-    body: "Enquiries arrive from six places and get lost in five of them. We pull every channel into one inbox and answer instantly — with real availability and real pricing.",
+    name: "Enquiries",
+    short: "Answered in seconds, not next morning.",
+    headline: "The booking goes to whoever replies first.",
+    body: "Enquiries come from six places and get lost in five of them. We put them in one inbox and answer straight away, with real dates and real prices.",
     points: [
-      "One inbox for email, web, Instagram, WhatsApp and OTAs",
-      "Instant first response, day or night",
-      "Quotes with live rates and availability, not guesses",
-      "Escalates to you the moment it needs a human",
+      "One inbox: email, your site, Instagram, WhatsApp, OTAs",
+      "First reply goes out day or night",
+      "Quotes from your actual calendar, not a guess",
+      "Comes to you the moment it needs a person",
     ],
   },
   {
@@ -330,51 +407,51 @@ export const modules: Module[] = [
     name: "WhatsApp",
     short: "Where your guests already are.",
     headline: "A front desk that fits in their pocket.",
-    body: "From first enquiry to checkout and back again — booking confirmations, directions, check-in details, upsells and review requests, all on the channel guests actually open.",
+    body: "First enquiry to checkout and back again. Confirmations, directions, check-in details, the odd upsell, the review ask. All on the app they actually open.",
     points: [
-      "Official WhatsApp Business API, not a grey-market workaround",
-      "Automated confirmations, reminders and check-in instructions",
-      "Upsell airport pickups, meals and late checkout at the right moment",
-      "Review request timed for right after a great stay",
+      "Official WhatsApp Business API, not a workaround",
+      "Confirmations, reminders, check-in instructions",
+      "Airport pickup, dinner, late checkout — offered when it makes sense",
+      "Review request right after a good stay",
     ],
   },
   {
     slug: "ota",
     name: "OTA Listings",
-    short: "One update. Every channel.",
-    headline: "Stop maintaining the same listing in six different places.",
-    body: "Booking.com, Airbnb, Agoda, MakeMyTrip and the rest, synced from one source of truth. Rates, availability and content stay consistent — and overbookings stop happening.",
+    short: "Change it once. It changes everywhere.",
+    headline: "Stop updating the same listing in six places.",
+    body: "Booking.com, Airbnb, Agoda, MakeMyTrip, the rest. One source of truth. Rates, dates and content stay the same everywhere, and you stop double-booking.",
     points: [
       "Two-way sync on rates and availability",
-      "Listing content and photos pushed everywhere at once",
-      "Overbooking protection across channels",
-      "AI flags listings that are underpriced for the date",
+      "Photos and content pushed to every channel at once",
+      "Overbooking protection",
+      "Flags when you've priced a date too low",
     ],
   },
   {
     slug: "bookings",
     name: "Bookings",
     short: "One calendar. The real one.",
-    headline: "Every booking, every channel, one truth.",
-    body: "Direct, OTA, walk-in, corporate and long-stay bookings in a single calendar — with payments handled by people who have spent their careers building payment systems.",
+    headline: "Every booking, every channel, one place.",
+    body: "Direct, OTA, walk-in, corporate, long-stay — one calendar. Payments handled by someone who spent years building payment systems for a living.",
     points: [
-      "Unified calendar across every source",
+      "One calendar, every source",
       "Payments, deposits and refunds built in",
-      "Automated invoices and guest documentation",
-      "Occupancy and revenue visible at a glance",
+      "Invoices and guest paperwork done automatically",
+      "You can see occupancy and revenue without doing sums",
     ],
   },
   {
     slug: "loyalty",
     name: "Loyalty",
-    short: "The second stay costs you nothing to win.",
-    headline: "Your best guest is the one who already loved it here.",
-    body: "Winning a repeat guest costs a fraction of winning a new one, yet almost no independent property does anything about it. We make the follow-up automatic.",
+    short: "The second stay is nearly free to win.",
+    headline: "Your best guest already stayed here once.",
+    body: "Getting someone back costs a fraction of finding someone new, and almost nobody does anything about it. We make the follow-up happen on its own.",
     points: [
-      "Guest profiles that remember preferences and history",
-      "Win-back campaigns timed to their travel pattern",
-      "Referral and direct-booking rewards",
-      "Reviews requested automatically after the right stays",
+      "Profiles that remember what they liked",
+      "Win-backs timed to when they actually travel",
+      "Referral and book-direct rewards",
+      "Reviews asked for after the right stays",
     ],
   },
 ];
@@ -384,7 +461,7 @@ export const modules: Module[] = [
 export const midTerm = {
   eyebrow: "30–180 night stays",
   headline: "The guest who books once and stays four months.",
-  sub: "Remote workers, relocating families, film and production crews, consultants on long projects, medical stays, and retirees escaping the season. They exist in large numbers, they pay well, and almost nobody is selling to them properly.",
+  sub: "Remote workers, families between houses, film crews, consultants on long projects, people here for medical treatment, retirees waiting out the season. There are a lot of them, they pay well, and almost nobody is selling to them properly.",
   economics: [
     {
       stat: "1 booking",
@@ -460,19 +537,19 @@ export const founders = [
 export const segments = [
   {
     name: "Hotels",
-    body: "Independent and boutique hotels that need the operational muscle of a chain without the chain.",
+    body: "Independent and boutique places that want what a chain has, without becoming one.",
   },
   {
     name: "Resorts",
-    body: "Seasonal properties fighting to fill the shoulder months and reduce OTA dependence.",
+    body: "Seasonal properties trying to fill the months either side and stop leaning on the OTAs.",
   },
   {
     name: "Homestays",
-    body: "Owner-run properties where the person answering enquiries is also the person making breakfast.",
+    body: "Where the person answering the enquiry is also the person making breakfast.",
   },
   {
     name: "Mid-Term Rentals",
-    body: "Villas and apartments better suited to guests who stay months, not nights.",
+    body: "Villas and apartments that suit people staying months, not nights.",
   },
 ];
 
@@ -481,18 +558,18 @@ export const segments = [
 export const howItWorks = [
   {
     step: "01",
-    title: "We audit what you have",
-    body: "A working session on your property: current site, listings, enquiry channels, rates and where bookings actually come from today. You get the findings whether or not you sign up.",
+    title: "We go through what you've got",
+    body: "One session on your property. Your site, your listings, where enquiries land, your rates, and where the bookings are actually coming from. You get what we find whether or not you sign up.",
   },
   {
     step: "02",
-    title: "We connect and migrate",
-    body: "We wire up your OTA channels, WhatsApp Business number, social accounts and booking calendar, and rebuild your website. You keep working through the switch — nothing goes dark.",
+    title: "We plug it all in",
+    body: "OTA channels, WhatsApp Business number, social accounts, your calendar. We rebuild the website. You keep taking bookings the whole time — nothing goes dark.",
   },
   {
     step: "03",
-    title: "It runs, and keeps learning",
-    body: "Enquiries get answered, posts go out, listings stay in sync, and long-stay leads start arriving. You review what matters on your phone and get your evenings back.",
+    title: "It runs",
+    body: "Enquiries answered, posts going out, listings in sync, long-stay leads turning up. You check what matters on your phone and get your evenings back.",
   },
 ];
 
@@ -500,31 +577,35 @@ export const howItWorks = [
 
 export const faqs = [
   {
+    q: "Hang on — isn't automation the thing you're complaining about?",
+    a: "Fair question, and we've asked ourselves the same one. The difference is what gets automated. A management company automates the host away, so the guest ends up talking to a template. We automate the rate updates, the channel sync, the invoices, the paperwork — the stuff that made hosting feel like a job. You still write the welcome message. You still decide who stays. If a guest can't tell whether they're talking to you or to software, we've built the wrong thing.",
+  },
+  {
     q: "Do you actually use this yourselves?",
-    a: "Yes. We run a homestay of our own, and it was the first property on the platform. Every part of this was built because we needed it — the late-night enquiries, the listings drifting out of sync, the empty shoulder months. Nothing reaches your property that we have not already lived with on ours.",
+    a: "Yes. We run a homestay, and it was the first place on the platform. Every bit of this exists because we needed it — the 11pm enquiry, the listings drifting out of sync, the months where nobody comes. Nothing reaches your property that we haven't already lived with at ours.",
   },
   {
     q: "Are you an agency or a software product?",
-    a: "Both, deliberately. You get the platform, and you get us running it. Most owners do not want another dashboard to learn — they want the work done. We built the software so that two engineers can do the job a ten-person agency would charge you for.",
+    a: "Both, on purpose. You get the software and you get us running it. Most owners don't want another dashboard to learn, they want the work done. We built the software so two people can do what a ten-person agency would bill you for.",
   },
   {
     q: "Do I have to leave Booking.com and Airbnb?",
-    a: "No. We manage those listings for you and keep them in sync. The goal is not to abandon the OTAs — it is to stop being dependent on them, by growing direct and long-stay bookings alongside.",
+    a: "No. We run those listings for you and keep them synced. The point isn't to quit the OTAs. It's to stop being dependent on them, by growing everything else alongside.",
   },
   {
-    q: "What size property does this suit?",
-    a: "Anything from a four-room homestay to a mid-sized resort. If you are large enough to have a full-time revenue manager and a marketing team, you probably do not need us.",
+    q: "What size property is this for?",
+    a: "Four-room homestay up to a mid-sized resort. If you're big enough to employ a revenue manager and a marketing team, you probably don't need us.",
   },
   {
     q: "Will AI be talking to my guests?",
-    a: "For first responses, availability and routine questions — yes, and that is the point, because speed wins bookings. It answers in your property's voice, and anything sensitive or unusual is handed straight to you. You can read every conversation.",
+    a: "For the first reply, dates and the usual questions — yes, because whoever answers first usually gets the booking. It writes in your voice, and anything unusual comes straight to you. You can read every conversation. And you can turn it off.",
   },
   {
     q: "How long does setup take?",
-    a: "Most properties are live in two to three weeks, depending on how quickly OTA and WhatsApp Business approvals come through. The website is usually the first thing to go up.",
+    a: "Two to three weeks for most places, depending on how fast OTA and WhatsApp Business approvals come through. The website usually goes up first.",
   },
   {
     q: "What does it cost?",
-    a: "A flat monthly platform fee, plus a success-based fee on the mid-term stays we source for you. No commission on your own direct bookings — those are yours. We will give you exact numbers on the demo call.",
+    a: "A flat monthly fee, plus a cut of the long-stay bookings we find for you. Nothing on your own direct bookings — those are yours. We'll give you real numbers on the call.",
   },
 ];

@@ -3,8 +3,8 @@ import Reveal from "./Reveal";
 import { Arrow, Button, WhatsAppIcon } from "./ui";
 
 export default function CTASection({
-  title = "Would a quick demo be useful?",
-  sub = "Twenty minutes. We will look at your property, your listings and where your bookings come from today, and show you what the platform would do with them. No slides.",
+  title = "Want to see it on your place?",
+  sub = "Twenty minutes. We look at your property, your listings and where your bookings actually come from, and show you what we'd do with them. No slides.",
   eyebrow = "Next step",
 }: {
   title?: string;

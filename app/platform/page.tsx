@@ -22,11 +22,11 @@ export default function PlatformPage() {
         eyebrow="The platform"
         title={
           <>
-            Everything that runs your property,{" "}
+            Everything that runs your place,{" "}
             <span className="text-kokum italic">running together</span>.
           </>
         }
-        sub="Seven modules, one system, one login. Below is exactly what each one does — and what changes for you once it is switched on."
+        sub="Seven things, one system, one login. Here's what each does and what changes once it's on."
       >
         <nav className="flex flex-wrap gap-2">
           {modules.map((m) => (
@@ -118,8 +118,8 @@ export default function PlatformPage() {
             <Reveal>
               <SectionHeading
                 eyebrow="Why one system"
-                title="The value is in the seams."
-                sub="Seven separate tools give you seven separate silos. One system means the pieces know about each other — and that is where the bookings actually come from."
+                title="The good bit is where they meet."
+                sub="Seven separate tools give you seven separate silos. One system means the pieces know about each other. That's where the bookings come from."
               />
             </Reveal>
           </div>
@@ -169,9 +169,9 @@ export default function PlatformPage() {
             <Reveal delay={360}>
               <div className="mt-8 rounded-2xl border border-line bg-paper-2 p-8">
                 <p className="font-[family-name:var(--font-display)] text-xl leading-relaxed text-ink italic md:text-2xl">
-                  A channel manager will sync your rates. A social tool will
-                  schedule your posts. Neither of them will notice that your
-                  February is empty and do something about it.
+                  A channel manager syncs your rates. A social tool schedules
+                  your posts. Neither of them notices February is empty and does
+                  something about it.
                 </p>
                 <Button href="/mid-term-stays" variant="ghost" className="mt-6">
                   That is what mid-term stays are for
@@ -184,9 +184,9 @@ export default function PlatformPage() {
       </Section>
 
       <CTASection
-        eyebrow="See it on your property"
-        title="Bring us your listings. We will show you the gaps."
-        sub="On the demo we will look at your live OTA listings, your current site and your enquiry channels, and point out what is costing you bookings right now — whether or not you sign up."
+        eyebrow="See it on your own place"
+        title="Send us your listings. We'll show you what's leaking."
+        sub="On the call we go through your OTA listings, your site and where enquiries land, and tell you what's costing you bookings right now. Whether or not you sign up."
       />
     </>
   );
